@@ -6,12 +6,21 @@
 
 MaFenetre::MaFenetre() : QWidget()
 {
-    int longueur = 900;
-    int largeur = 600;
-    int bouton_larg = 50;
-    int bouton_long = bouton_larg*3;
+    longueur = 900;
+    largeur = 600;
+
 
     setFixedSize(longueur, largeur);
+
+    Menu();
+
+
+}
+
+void MaFenetre::Menu(){
+
+    int bouton_larg = 50;
+    int bouton_long = bouton_larg*3;
 
     QLabel *Image = new QLabel(this);
             Image->setPixmap(QPixmap("C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot/Main_Menu.jpg"));
@@ -36,8 +45,6 @@ MaFenetre::MaFenetre() : QWidget()
     m_bouton->setCursor(Qt::PointingHandCursor);
     m_bouton->setGeometry(longueur/2-bouton_long/2,  largeur/3+(2*bouton_larg)+20, bouton_long, bouton_larg);
     QObject::connect(m_bouton, SIGNAL(clicked()), qApp, SLOT(quit()));
-
-
 }
 
 void MaFenetre::changer_back(){
@@ -45,16 +52,6 @@ void MaFenetre::changer_back(){
 }
 
 void MaFenetre::Nouvelle_partie(){
-    bool ok =false;
-    QString pseudo = QInputDialog::getText(this, "Pseudo", "Quel est votre pseudo ?", QLineEdit::Normal, QString(), &ok);
 
-    if (ok && !pseudo.isEmpty())
-        {
-            QMessageBox::information(this, "Pseudo", "Bonjour " + pseudo + ", ça va ?");
-        }
-        else
-        {
-            QMessageBox::critical(this, "Pseudo", "Vous n'avez pas voulu donner votre nom… snif.");
-        }
 
 }

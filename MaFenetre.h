@@ -20,11 +20,14 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
 public slots:
     void changer_back();
     void Nouvelle_partie();
+    void Menu();
 
     private:
     QPushButton *m_bouton_newGame;
     QPushButton *m_bouton_saved;
     QPushButton *m_bouton;
+    int largeur;
+    int longueur;
 };
 
 #endif
