@@ -20,6 +20,9 @@ MaFenetre::MaFenetre() : QWidget()
     Image->setPixmap(QPixmap("C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot/Main_Menu.jpg"));
     Image->setVisible(false);
 
+    m_pseudo = new QLineEdit();
+    m_pseudo->setVisible(false);
+
 
     m_texte = new QLabel(this); // Création de l"objet
     m_texte->setText("MENU PRINCIPAL"); // Définition du texte
@@ -27,7 +30,6 @@ MaFenetre::MaFenetre() : QWidget()
     m_texte->setGeometry(900/2-(taille_texte("MENU PRINCIPAL")/2),600/3-50,taille_texte("MENU PRINCIPAL") , 30);
     m_texte->setVisible(false);
 
-    m_pseudo = new QLineEdit;
 
 
     // Construction des boutons
@@ -57,6 +59,9 @@ MaFenetre::MaFenetre() : QWidget()
     m_bouton_Retour_Menu->setVisible(false);
 
     m_bouton_start= new QPushButton("", this);
+    m_bouton_start->setCursor(Qt::PointingHandCursor);
+    m_bouton_start->setGeometry(longueur-bouton_long,  largeur-bouton_larg, bouton_long, bouton_larg);
+    m_bouton_start->setVisible(false);
 
     Menu();
 
@@ -76,6 +81,9 @@ void MaFenetre::Menu(){
     m_bouton_quitter->setVisible(true);
     m_bouton_Retour_Menu->setVisible(false);
 
+    Image->setPixmap(QPixmap("C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot/Main_Menu.jpg"));
+
+
 
     //QVBoxLayout *layout = new QVBoxLayout;
 
@@ -94,6 +102,13 @@ void MaFenetre::Nouvelle_partie(){
 
     m_texte->setText("NOUVELLE PARTIE");
     m_texte->setGeometry(longueur/2-(taille_texte("NOUVELLE PARTIE")/2),largeur/3-50, taille_texte("NOUVELLE PARTIE") , 30);
+
+    Image->setPixmap(QPixmap("C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot/feat-1800x0-c-center.jpg"));
+
+
+    m_bouton_start->setGeometry(longueur-bouton_long,  largeur-bouton_larg, bouton_long, bouton_larg);
+    m_bouton_start->setVisible(true);
+
 
    // m_pseudo->setEchoMode();
 
