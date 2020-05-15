@@ -9,6 +9,7 @@
 #include <QTextBrowser>
 #include <QVBoxLayout>
 #include <QObject>
+#include <QLabel>
 
 class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
 {
@@ -16,18 +17,29 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
 
     public:
     MaFenetre();
+    int taille_texte(QString txt);
 
-public slots:
-    void changer_back();
+    public slots:
+    void charger();
     void Nouvelle_partie();
     void Menu();
 
     private:
     QPushButton *m_bouton_newGame;
     QPushButton *m_bouton_saved;
-    QPushButton *m_bouton;
+    QPushButton *m_bouton_quitter;
+    QPushButton *m_bouton_Retour_Menu;
+    QPushButton *m_bouton_start;
+
     int largeur;
     int longueur;
+    int bouton_larg;
+    int bouton_long;
+    QLabel *Image;
+    QLabel *m_texte;
+    QString *pseudo;
+    QLineEdit *m_pseudo;
+
 };
 
 #endif
