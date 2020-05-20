@@ -271,7 +271,7 @@ void MaFenetre::loadChoix(){
     //faire le chargement et récupérer la situation voulue avec un nouvelle = ?
 
     Situation sit(1, 0, 0, 3, "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/forest-chemin.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " obscur", "lumineux", "retour en arrière", "", "Vie", "Mort !", "", "");
-    setSituationActuelle(nouvelle);
+    setSituationActuelle(sit);
     m_texte->setText(message);
     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
     m_texte->setVisible(true);
