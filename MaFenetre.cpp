@@ -17,6 +17,8 @@ MaFenetre::MaFenetre() : QWidget()
 
     setFixedSize(longueur, largeur);
 
+     Situation sit(1, 0, 0, 4, "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "");
+    setSituationActuelle(sit);
     Image = new QLabel(this);
     Image->setPixmap(QPixmap("C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg"));
     Image->setVisible(false);
@@ -195,8 +197,8 @@ void MaFenetre::Situ(){
     int nombre_choix;
     QString message;
     QString image;
-    Situation sit(1, 0, 0, 4, "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "");
-    setSituationActuelle(sit);
+   // Situation sit(1, 0, 0, 4, "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "");
+   // setSituationActuelle(sit);
     situation = getSituationActuelle();
     nombre_choix = situation.getNbChoix();
     message = situation.getMessage();
@@ -264,11 +266,16 @@ void MaFenetre::loadChoix(){
        QString path;
        path = getNextPath();
        QString message;
+       Situation nouvelle;
        message = "chargement de la nouvelle situation : " + path;
-    //faire le chargement et récupérer la situation voulue avec un situation = ?
+    //faire le chargement et récupérer la situation voulue avec un nouvelle = ?
+
+    Situation sit(1, 0, 0, 3, "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/forest-chemin.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " obscur", "lumineux", "retour en arrière", "", "Vie", "Mort !", "", "");
+    setSituationActuelle(nouvelle);
     m_texte->setText(message);
     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
     m_texte->setVisible(true);
+    Situ();
 }
 
 void MaFenetre::Choix1(){
