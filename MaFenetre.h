@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QObject>
 #include <QLabel>
+#include "situation.h"
 
 class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
 {
@@ -18,6 +19,20 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     public:
     MaFenetre();
     int taille_texte(QString txt);
+    QPushButton* getBoutonChoix1();
+    QPushButton* getBoutonChoix2();
+    QPushButton* getBoutonChoix3();
+    QPushButton* getBoutonChoix4();
+    QPushButton* getBoutonContinuer();
+    QLabel* getImage();
+    QLabel* getText();
+    Situation getSituationActuelle();
+    void setSituationActuelle(Situation situation);
+    void setNextPath(QString path);
+    QString getNextPath();
+
+
+
 
     public slots:
     void charger();
@@ -25,6 +40,12 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     void Menu();
     void Situ();
     void SauvegarderEtQuitter();
+    void loadChoix();
+    void Choix1();
+    void Choix2();
+    void Choix3();
+    void Choix4();
+
 
     private:
     QPushButton *m_bouton_newGame;
@@ -45,6 +66,8 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     QLabel *Image;
     QLabel *m_texte;
     QLineEdit *m_pseudo;
+    Situation situtation_actuelle;
+    QString next_path;
 
 };
 

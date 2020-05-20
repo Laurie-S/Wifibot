@@ -5,6 +5,7 @@
 #include <QString>
 #include <QFontMetrics>
 #include <QLineEdit>
+#include <QPicture>
 
 MaFenetre::MaFenetre() : QWidget()
 {
@@ -17,7 +18,7 @@ MaFenetre::MaFenetre() : QWidget()
     setFixedSize(longueur, largeur);
 
     Image = new QLabel(this);
-    Image->setPixmap(QPixmap("C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot/Main_Menu.jpg"));
+    Image->setPixmap(QPixmap("C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg"));
     Image->setVisible(false);
 
 
@@ -120,7 +121,7 @@ void MaFenetre::Menu(){
     m_bouton_quitter->setVisible(true);
     m_bouton_Retour_Menu->setVisible(false);
 
-    Image->setPixmap(QPixmap("C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot/Main_Menu.jpg"));
+    Image->setPixmap(QPixmap("C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg"));
 
 
 
@@ -142,27 +143,101 @@ void MaFenetre::Nouvelle_partie(){
     m_texte->setText("NOUVELLE PARTIE");
     m_texte->setGeometry(longueur/2-(taille_texte("NOUVELLE PARTIE")/2),largeur/3-50, taille_texte("NOUVELLE PARTIE") , 30);
 
-    Image->setPixmap(QPixmap("C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot/feat-1800x0-c-center.jpg"));
+   Image->setPixmap(QPixmap("C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/feat-1800x0-c-center.jpg"));
+
 
     m_bouton_start->setVisible(true);
 
+
+}
+
+QPushButton* MaFenetre::getBoutonChoix1(){
+    return m_bouton_choix1;
+}
+
+QPushButton* MaFenetre::getBoutonChoix2(){
+    return m_bouton_choix2;
+}
+
+QPushButton* MaFenetre::getBoutonChoix3(){
+    return m_bouton_choix3;
+}
+QPushButton* MaFenetre::getBoutonChoix4(){
+    return m_bouton_choix4;
+}
+QPushButton* MaFenetre::getBoutonContinuer(){
+    return m_bouton_continuer;
+}
+QLabel* MaFenetre::getImage(){
+    return Image;
+}
+QLabel* MaFenetre::getText(){
+    return m_texte;
+}
+
+Situation MaFenetre::getSituationActuelle(){
+    return situtation_actuelle;
+
+}
+void MaFenetre::setSituationActuelle(Situation situation){
+    situtation_actuelle = situation;
+}
+
+void MaFenetre::setNextPath(QString path){
+    next_path = path;
+}
+QString MaFenetre::getNextPath(){
+    return next_path;
 }
 
 void MaFenetre::Situ(){
-    m_texte->setVisible(false);
+    Situation situation;
+    int nombre_choix;
+    QString message;
+    QString image;
+    Situation sit(1, 0, 0, 4, "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "");
+    setSituationActuelle(sit);
+    situation = getSituationActuelle();
+    nombre_choix = situation.getNbChoix();
+    message = situation.getMessage();
+    image = situation.getPathImage();
+    Image->setPixmap(QPixmap(image));
+
+    m_bouton_choix1->setGeometry(longueur/2-bouton_long, largeur-2*bouton_larg, bouton_long, bouton_larg);
+    m_bouton_choix2->setGeometry(longueur/2, largeur-2*bouton_larg, bouton_long, bouton_larg);
+    m_bouton_choix3->setGeometry(longueur/2-bouton_long, largeur-bouton_larg, bouton_long, bouton_larg);
+    m_bouton_choix4->setGeometry(longueur/2, largeur-bouton_larg, bouton_long, bouton_larg);
+    m_texte->setText(message);
+    m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+    m_texte->setVisible(true);
     m_bouton_newGame->setVisible(false);
     m_bouton_saved->setVisible(false);
     m_bouton_quitter->setVisible(false);
     m_bouton_Retour_Menu->setVisible(false);
     m_bouton_start->setVisible(false);
     m_bouton_sauvegarder->setVisible(true);
-    m_bouton_continuer->setVisible(true);
-    m_bouton_choix1->setVisible(true);
-    m_bouton_choix2->setVisible(true);
-    m_bouton_choix3->setVisible(true);
-    m_bouton_choix4->setVisible(true);
+    m_bouton_continuer->setVisible(false);
 
-    int nombre_choix=4;
+    m_bouton_choix1->setVisible(true);
+    m_bouton_choix1->setText(situation.getChoix1());
+    QObject::connect(m_bouton_choix1, SIGNAL(clicked()), this, SLOT(Choix1()));
+
+    m_bouton_choix2->setVisible(true);
+    m_bouton_choix2->setText(situation.getChoix2());
+    QObject::connect(m_bouton_choix2, SIGNAL(clicked()), this, SLOT(Choix2()));
+
+    m_bouton_choix3->setText(situation.getChoix3());
+    m_bouton_choix3->setVisible(true);
+    QObject::connect(m_bouton_choix3, SIGNAL(clicked()), this, SLOT(Choix3()));
+    m_bouton_choix4->setVisible(false);
+
+    if(nombre_choix ==4){
+    m_bouton_choix4->setText(situation.getChoix4());
+    m_bouton_choix4->setVisible(true);
+    QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT(Choix4()));
+    }
+
+/*
     if(nombre_choix == 4){
         m_bouton_choix1->setGeometry(longueur/2-bouton_long, largeur-2*bouton_larg, bouton_long, bouton_larg);
         m_bouton_choix2->setGeometry(longueur/2, largeur-2*bouton_larg, bouton_long, bouton_larg);
@@ -170,6 +245,7 @@ void MaFenetre::Situ(){
         m_bouton_choix4->setGeometry(longueur/2, largeur-bouton_larg, bouton_long, bouton_larg);
 
     }
+
     if(nombre_choix == 3){
         m_bouton_choix1->setGeometry(longueur/2-bouton_long/2, largeur-2*bouton_larg, bouton_long, bouton_larg);
         m_bouton_choix2->setGeometry(longueur/2-bouton_long, largeur-bouton_larg, bouton_long, bouton_larg);
@@ -180,11 +256,89 @@ void MaFenetre::Situ(){
         m_bouton_choix1->setGeometry(longueur/2-bouton_long, largeur-bouton_larg, bouton_long, bouton_larg);
         m_bouton_choix2->setGeometry(longueur/2, largeur-bouton_larg, bouton_long, bouton_larg);
 
-    }
+    }*/
 
+}
 
+void MaFenetre::loadChoix(){
+       QString path;
+       path = getNextPath();
+       QString message;
+       message = "chargement de la nouvelle situation : " + path;
+    //faire le chargement et récupérer la situation voulue avec un situation = ?
+    m_texte->setText(message);
+    m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+    m_texte->setVisible(true);
+}
 
+void MaFenetre::Choix1(){
+    Situation situation;
+    situation = getSituationActuelle();
+    QString message;
+    message = " Vous avez choisit  : ' " + situation.getChoix1() + " ' ";
+    m_texte->setText(message);
+     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+    m_texte->setVisible(true);
+    QString path = situation.getPathNext1();
+    setNextPath(path);
+    m_bouton_choix1->setVisible(false);
+    m_bouton_choix2->setVisible(false);
+    m_bouton_choix3->setVisible(false);
+    m_bouton_choix4->setVisible(false);
+    m_bouton_continuer->setVisible(true);
+    QObject::connect(m_bouton_continuer, SIGNAL(clicked()), this, SLOT(loadChoix()));
+}
 
+void MaFenetre::Choix2(){
+    Situation situation;
+    situation = getSituationActuelle();
+    QString message;
+    message = " Vous avez choisit  : ' " + situation.getChoix2() + " ' ";
+    m_texte->setText(message);
+     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+    m_texte->setVisible(true);
+    QString path = situation.getPathNext2();
+    setNextPath(path);
+    m_bouton_choix1->setVisible(false);
+    m_bouton_choix2->setVisible(false);
+    m_bouton_choix3->setVisible(false);
+    m_bouton_choix4->setVisible(false);
+    m_bouton_continuer->setVisible(true);
+    QObject::connect(m_bouton_continuer, SIGNAL(clicked()), this, SLOT(loadChoix()));
+}
+void MaFenetre::Choix3(){
+    Situation situation;
+    situation = getSituationActuelle();
+    QString message;
+    message = " Vous avez choisit  : ' " + situation.getChoix3() + " ' ";
+    m_texte->setText(message);
+     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+    m_texte->setVisible(true);
+    QString path = situation.getPathNext3();
+    setNextPath(path);
+    m_bouton_choix1->setVisible(false);
+    m_bouton_choix2->setVisible(false);
+    m_bouton_choix3->setVisible(false);
+    m_bouton_choix4->setVisible(false);
+    m_bouton_continuer->setVisible(true);
+    QObject::connect(m_bouton_continuer, SIGNAL(clicked()), this, SLOT(loadChoix()));
+}
+void MaFenetre::Choix4(){
+    Situation situation;
+    situation = getSituationActuelle();
+    QString message;
+    message = " Vous avez choisit  : ' " + situation.getChoix4() + " ' ";
+    m_texte->setText(message);
+     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+    m_texte->setVisible(true);
+    QString path = situation.getPathNext4();
+    setNextPath(path);
+    m_bouton_choix1->setVisible(false);
+    m_bouton_choix2->setVisible(false);
+    m_bouton_choix3->setVisible(false);
+    m_bouton_choix4->setVisible(false);
+    m_bouton_continuer->setVisible(true);
+    QObject::connect(m_bouton_continuer, SIGNAL(clicked()), this, SLOT(loadChoix()));
 }
 
 void MaFenetre::SauvegarderEtQuitter(){

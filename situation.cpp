@@ -3,11 +3,22 @@
 Situation::Situation(){}
 
 
-Situation::Situation(int p_id, int p_ennemi, int p_item, QString p_path){
+ Situation::Situation(int p_id, int p_ennemi, int p_item, int p_nb_choix, QString p_path_image, QString p_message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, QString p_path_next1, QString p_path_next2, QString p_path_next3, QString p_path_next4){
     id = p_id;
     ennemi = p_ennemi;
     item = p_item;
-    path = p_path;
+    nb_choix = p_nb_choix;
+    path_image = p_path_image;
+    message = p_message;
+    path_actuel = p_path_actuel;
+    choix1 = p_choix1;
+    choix2 = p_choix2;
+    choix3 = p_choix3;
+    choix4 = p_choix4;
+    path_next1 = p_path_next1;
+    path_next2 = p_path_next2;
+    path_next3 = p_path_next3;
+    path_next4 = p_path_next4;
 
 }
 
@@ -24,8 +35,52 @@ int Situation::getItem(){
     return item;
 }
 
+int Situation::getNbChoix(){
+    return nb_choix;
+}
+
 QString Situation::getPathSituation(){
-    return path;
+    return path_actuel;
+}
+
+
+QString Situation::getMessage(){
+    return message;
+}
+
+QString Situation::getChoix1(){
+    return choix1;
+}
+
+QString Situation::getChoix2(){
+    return choix2;
+}
+
+QString Situation::getChoix3(){
+    return choix3;
+}
+QString Situation::getChoix4(){
+    return choix4;
+}
+
+QString Situation::getPathNext1(){
+    return path_next1;
+}
+
+QString Situation::getPathNext2(){
+    return path_next2;
+}
+
+QString Situation::getPathNext3(){
+    return path_next3;
+}
+
+QString Situation::getPathNext4(){
+    return path_next4;
+}
+
+QString Situation::getPathImage(){
+    return path_image;
 }
 
 void Situation::setIdSituation(int p_id){
@@ -41,28 +96,17 @@ void Situation::setItem(int p_item){
 }
 
 void Situation::setPathSituation(QString p_path){
-    path =p_path;
+    path_actuel =p_path;
+}
+
+void Situation::setMessage(QString p_message){
+    message = p_message;
 }
 
 
-QList <QPushButton *> TwoChoice(QString choix1, QString choix2,  QWidget *zoneCentrale){
-    QPushButton *bouton1 = new QPushButton(choix1);
-    bouton1->setGeometry(800,600, 50, 15);
-    QPushButton *bouton2 = new QPushButton(choix2);
-    bouton1->setGeometry(800, 610, 50, 15);
 
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(bouton1);
-    layout->addWidget(bouton2);
-
-    QList <QPushButton *> listButton;
-   listButton << bouton1 << bouton2;
-
-    zoneCentrale->setLayout(layout);
-    return listButton;
-}
-
+/*
 QList <QPushButton> ThreeChoice(QString choix1, QString choix2, QString choix3,  QWidget zoneCentrale);
-QList <QPushButton> FourChoice(QString choix1, QString choix2, QString choix3, QString choix4,  QWidget zoneCentrale);
+QList <QPushButton> FourChoice(QString choix1, QString choix2, QString choix3, QString choix4,  QWidget zoneCentrale);*/
 
 Situation::~Situation(){}

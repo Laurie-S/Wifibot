@@ -1,9 +1,12 @@
 #ifndef SITUATION_H
 #define SITUATION_H
+
 #include <QApplication>
 #include "item.h"
 #include "ennemi.h"
-#include "fen_principale.h"
+#include <QWidget>
+#include <QPushButton>
+
 
 
 class Situation{
@@ -12,26 +15,55 @@ private:
     int id;
     int ennemi;
     int item;
-    QString path;
+    int nb_choix;
+    QString path_image;
+    QString path_actuel;
+    QString path_next1;
+    QString path_next2;
+    QString path_next3;
+    QString path_next4;
+    QString message;
+    QString message_choix;
+    QString choix1;
+    QString choix2;
+    QString choix3;
+    QString choix4;
 
 public:
     Situation();
-    Situation(int p_id, int p_ennemi, int p_item, QString p_path);
+    Situation(int p_id, int p_ennemi, int p_item, int p_nb_choix, QString p_path_image, QString message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, QString p_path_next1, QString p_path_next2, QString p_path_next3, QString p_path_next4);
     ~Situation();
 
     int getIdSituation();
     int getEnnemi();
     int getItem();
+    int getNbChoix();
     QString getPathSituation();
+    QString getPathImage();
+    QString getMessage();
+    QString getPathNext();
+    QString getMessageChoix();
+    QString getChoix1();
+    QString getChoix2();
+    QString getChoix3();
+    QString getChoix4();
+    QString getPathNext1();
+    QString getPathNext2();
+    QString getPathNext3();
+    QString getPathNext4();
 
     void setIdSituation(int p_id);
     void setEnnemi(int p_ennemi);
     void setItem(int p_item);
     void setPathSituation(QString p_path);
+    void setMessage(QString p_message);
+    void setPathImage(QString p_path_image);
+    void setPathNext(QString p_path_next);
+    void setMessageChoix(QString p_message);
 
-    QList <QPushButton *> TwoChoice(QString choix1, QString choix2,  QWidget *zoneCentrale);
-    QList <QPushButton> ThreeChoice(QString choix1, QString choix2, QString choix3,  QWidget *zoneCentrale);
-    QList <QPushButton> FourChoice(QString choix1, QString choix2, QString choix3, QString choix4,  QWidget *zoneCentrale);
+
+  // void <QPushButton> ThreeChoice(QString choix1, QString choix2, QString choix3,  QWidget *zoneCentrale);
+   //void <QPushButton> FourChoice(QString choix1, QString choix2, QString choix3, QString choix4,  QWidget *zoneCentrale);
 
 
 };
