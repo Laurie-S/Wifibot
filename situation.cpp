@@ -3,7 +3,7 @@
 Situation::Situation(){}
 
 
- Situation::Situation(int p_id, int p_ennemi, int p_item, int p_nb_choix, QString p_path_image, QString p_message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, QString p_path_next1, QString p_path_next2, QString p_path_next3, QString p_path_next4){
+ Situation::Situation(int p_id, int p_ennemi, int p_item, int p_nb_choix, QString p_path_image, QString p_message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, QString p_path_next1, QString p_path_next2, QString p_path_next3, QString p_path_next4, Ennemi p_monstre){
     id = p_id;
     ennemi = p_ennemi;
     item = p_item;
@@ -19,6 +19,7 @@ Situation::Situation(){}
     path_next2 = p_path_next2;
     path_next3 = p_path_next3;
     path_next4 = p_path_next4;
+    monstre = p_monstre;
 
 }
 
@@ -27,11 +28,11 @@ int Situation::getIdSituation(){
     return id;
 }
 
-int Situation::getEnnemi(){
+int Situation::getIdEnnemi(){
     return ennemi;
 }
 
-int Situation::getItem(){
+int Situation::getIdItem(){
     return item;
 }
 
@@ -81,6 +82,10 @@ QString Situation::getPathNext4(){
 
 QString Situation::getPathImage(){
     return path_image;
+}
+
+Ennemi Situation::getEnnemi(){
+    return monstre;
 }
 
 void Situation::setIdSituation(int p_id){

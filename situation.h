@@ -28,15 +28,16 @@ private:
     QString choix2;
     QString choix3;
     QString choix4;
+    Ennemi monstre;
 
 public:
     Situation();
-    Situation(int p_id, int p_ennemi, int p_item, int p_nb_choix, QString p_path_image, QString message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, QString p_path_next1, QString p_path_next2, QString p_path_next3, QString p_path_next4);
+    Situation(int p_id, int p_ennemi, int p_item, int p_nb_choix, QString p_path_image, QString message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, QString p_path_next1, QString p_path_next2, QString p_path_next3, QString p_path_next4, Ennemi p_monstre);
     ~Situation();
 
     int getIdSituation();
-    int getEnnemi();
-    int getItem();
+    int getIdEnnemi();
+    int getIdItem();
     int getNbChoix();
     QString getPathSituation();
     QString getPathImage();
@@ -51,6 +52,7 @@ public:
     QString getPathNext2();
     QString getPathNext3();
     QString getPathNext4();
+    Ennemi getEnnemi();
 
     void setIdSituation(int p_id);
     void setEnnemi(int p_ennemi);

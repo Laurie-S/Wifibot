@@ -4,6 +4,10 @@
 #include <QApplication>
 #include <QWidget>
 #include <QPushButton>
+#include <QTextEdit>   // Nous allons tout de même afficher le contenu du fichier ^^
+#include <QFile>       // Pour utiliser le fichier
+#include <QString>     // Stocke le contenu du fichier
+#include <QTextStream> // Flux sortant du fichier
 #include <QSlider>
 #include <QLineEdit>
 #include <QTextBrowser>
@@ -11,6 +15,7 @@
 #include <QObject>
 #include <QLabel>
 #include "situation.h"
+#include "personnage.h"
 
 class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
 {
@@ -30,6 +35,7 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     void setSituationActuelle(Situation situation);
     void setNextPath(QString path);
     QString getNextPath();
+    Personnage getPersonnage();
 
 
 
@@ -66,8 +72,10 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     QLabel *Image;
     QLabel *m_texte;
     QLineEdit *m_pseudo;
-    Situation situtation_actuelle;
+    Situation situation_actuelle;
     QString next_path;
+    Personnage hero;
+
 
 };
 
