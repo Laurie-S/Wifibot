@@ -12,7 +12,7 @@
 class Situation{
 
 private:
-    int id; // 0 = normale, 1 = ennemi present, 2 = situation mortelle, 3= situation victoire
+    int id; // 0 = normale, 1 = ennemi present et situation mortelle, 2= situation victoire
     int nb_choix;
     QString path_image;
     QString path_actuel;

@@ -22,7 +22,7 @@ MaFenetre::MaFenetre() : QWidget()
      int health =20;
      hero.setHealth(health);
      hero.setNamePersonnage("Aventurier");
-     Situation sit(0, 4, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "", ennemi);
+     Situation sit(0, 3, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "", ennemi);
     setSituationActuelle(sit);
     Image = new QLabel(this);
     Image->setPixmap(QPixmap(adresse+"/Main_Menu.jpg"));
@@ -112,7 +112,7 @@ MaFenetre::MaFenetre() : QWidget()
     barre_vie = new QProgressBar(this);
     barre_vie->setMinimum(0);
     barre_vie->setMaximum(health);
-    barre_vie->setValue(15);
+    barre_vie->setValue(20);
 
     barre_vie->setGeometry(760, 20, 170, 15);
 
@@ -221,9 +221,9 @@ void MaFenetre::Situ(){
     int nombre_choix;
     QString message;
     QString image;
-    int health;
     barre_vie->setVisible(true);
-    health = hero.getHealth(); // faire le slider avec la santé
+
+
    // Situation sit(1, 0, 0, 4, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "");
     nombre_choix = situation_actuelle.getNbChoix();
     message = situation_actuelle.getMessage();
@@ -292,13 +292,10 @@ void MaFenetre::loadChoix(){
        path = getNextPath();
        QString message;
        Situation nouvelle;
-       Ennemi ennemi("monstre", 2);
-       int degat;
+       Ennemi ennemi("monstre", 10);
        int vie;
        vie = hero.getHealth();
-       degat = ennemi.getAttack();
-        vie = vie - degat;
-        hero.setHealth(vie);
+       //barre_vie->setValue(vie);
         if(vie <= 0){
             message = "Vous êtes mort";
             m_texte->setText(message);
@@ -307,18 +304,31 @@ void MaFenetre::loadChoix(){
             Image->setPixmap(QPixmap(adresse+"/Mort.jpg"));
             m_bouton_quitter->setVisible(true);
             m_bouton_continuer->setVisible(false);
+            barre_vie->setVisible(false);
 
         }
         else{
             message = "chargement de la nouvelle situation : " + path + QString(vie);
            //faire le chargement et récupérer la situation voulue avec un nouvelle = ?
 
-            Situation sit(0, 3, adresse+"/forest-chemin.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " obscur", "lumineux", "retour en arrière", "", "Vie", "Mort !", "", "", ennemi);
+            Situation sit(1, 3, adresse+"/forest-chemin.jpg", "Choississez le chemin à prendre dans la forêt avec Ennemi", "chemin actuel", " obscur", "lumineux", "retour en arrière", "", "Vie", "Mort !", "", "", ennemi);
             setSituationActuelle(sit);
-            m_texte->setText(message);
-            m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
-            m_texte->setVisible(true);
-            Situ();
+            if(situation_actuelle.getIdSituation()== 2){ // situation victoire ?
+                message = "Félicitation vous avez trouvé le trésor";
+                m_texte->setText(message);
+                m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+                m_texte->setVisible(true);
+                Image->setPixmap(QPixmap(adresse+"/victoire.jpg"));
+                m_bouton_quitter->setVisible(true);
+                m_bouton_continuer->setVisible(false);
+                barre_vie->setVisible(false);
+            }
+            else{
+              m_texte->setText(message);
+              m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+              m_texte->setVisible(true);
+              Situ();
+            }
 
 
         }
@@ -327,8 +337,22 @@ void MaFenetre::loadChoix(){
 void MaFenetre::Choix1(){
     QString message;
     message = " Vous avez choisit  : ' " + situation_actuelle.getChoix1() + " ' ";
+
+    if(situation_actuelle.getIdSituation() == 1){
+         Ennemi ennemi;
+         int degat;
+         int vie;
+         ennemi = situation_actuelle.getEnnemi();
+         degat = ennemi.getAttack();
+         vie = hero.getHealth();
+         vie = vie - degat;
+         hero.setHealth(vie);
+         barre_vie->setValue(vie);
+         message = message + "\n Vous avez reçu une blessures ";
+
+    }
     m_texte->setText(message);
-     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
     m_texte->setVisible(true);
     QString path = situation_actuelle.getPathNext1();
     setNextPath(path);
@@ -337,6 +361,7 @@ void MaFenetre::Choix1(){
     m_bouton_choix3->setVisible(false);
     m_bouton_choix4->setVisible(false);
     m_bouton_continuer->setVisible(true);
+
 }
 
 void MaFenetre::Choix2(){
