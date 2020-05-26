@@ -7,7 +7,7 @@
 #include <QLineEdit>
 #include <QPicture>
 
-QString adresse = "C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot"; // adresse des fichiers
+QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test"; // adresse des fichiers
 
 MaFenetre::MaFenetre() : QWidget()
 {
@@ -21,7 +21,7 @@ MaFenetre::MaFenetre() : QWidget()
      Ennemi ennemi;
      hero.setHealth(20);
      hero.setNamePersonnage("Aventurier");
-     Situation sit(1, 0, 0, 4, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "", ennemi);
+     Situation sit(0, 4, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "", ennemi);
     setSituationActuelle(sit);
     Image = new QLabel(this);
     Image->setPixmap(QPixmap(adresse+"/Main_Menu.jpg"));
@@ -277,14 +277,14 @@ void MaFenetre::loadChoix(){
        path = getNextPath();
        QString message;
        Situation nouvelle;
-       Ennemi ennemi(1, "monstre", 20);
+       Ennemi ennemi("monstre", 20);
        int degat;
        int vie;
        vie = hero.getHealth();
        degat = ennemi.getAttack();
         vie = vie - degat;
         hero.setHealth(vie);
-        if(vie == 0){
+        if(vie <= 0){
             message = "Vous êtes mort";
             m_texte->setText(message);
             m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
@@ -298,7 +298,7 @@ void MaFenetre::loadChoix(){
             message = "chargement de la nouvelle situation : " + path + QString(vie);
            //faire le chargement et récupérer la situation voulue avec un nouvelle = ?
 
-            Situation sit(1, 0, 0, 3, adresse+"/forest-chemin.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " obscur", "lumineux", "retour en arrière", "", "Vie", "Mort !", "", "", ennemi);
+            Situation sit(0, 3, adresse+"/forest-chemin.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " obscur", "lumineux", "retour en arrière", "", "Vie", "Mort !", "", "", ennemi);
             setSituationActuelle(sit);
             m_texte->setText(message);
             m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);

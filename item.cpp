@@ -6,8 +6,7 @@
 Item::Item(){ }
 
 //constructeur
-Item::Item(int p_id, QString p_name, int p_damage, int p_heal, QString p_path){
-        id = p_id;
+Item::Item(QString p_name, int p_damage, int p_heal, QString p_path){
         name = p_name;
         damage = p_damage;
         heal = p_heal ;
@@ -18,12 +17,6 @@ Item::Item(int p_id, QString p_name, int p_damage, int p_heal, QString p_path){
 QString Item ::getNameItem(){
     return name;
 }
-
-
-int Item::getIdItem(){
-    return id;
-}
-
 
 int Item::getDamage(){
     return damage;
@@ -43,9 +36,6 @@ void Item::setNameItem(QString p_name){
     name = p_name;
 }
 
-void Item::setIdItem(int p_id){
-    id = p_id;
-}
 
 void Item::setDamage(int p_damage){
     damage = p_damage;

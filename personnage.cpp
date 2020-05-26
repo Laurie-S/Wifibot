@@ -46,7 +46,7 @@ void Personnage::setSize(int p_size){
 
 void Personnage::removeItem(Item *objet){
     for(int i =0; i< inventory.size(); i++){
-        if((*objet).getIdItem() == (*inventory[i]).getIdItem()){
+        if((*objet).getNameItem() == (*inventory[i]).getNameItem()){
             inventory.removeAt(i);
         }
     }

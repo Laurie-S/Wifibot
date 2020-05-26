@@ -12,9 +12,7 @@
 class Situation{
 
 private:
-    int id;
-    int ennemi;
-    int item;
+    int id; // 0 = normale, 1 = ennemi present, 2 = situation mortelle, 3= situation victoire
     int nb_choix;
     QString path_image;
     QString path_actuel;
@@ -32,12 +30,10 @@ private:
 
 public:
     Situation();
-    Situation(int p_id, int p_ennemi, int p_item, int p_nb_choix, QString p_path_image, QString message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, QString p_path_next1, QString p_path_next2, QString p_path_next3, QString p_path_next4, Ennemi p_monstre);
+    Situation(int p_id, int p_nb_choix, QString p_path_image, QString message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, QString p_path_next1, QString p_path_next2, QString p_path_next3, QString p_path_next4, Ennemi p_monstre);
     ~Situation();
 
     int getIdSituation();
-    int getIdEnnemi();
-    int getIdItem();
     int getNbChoix();
     QString getPathSituation();
     QString getPathImage();
@@ -55,17 +51,11 @@ public:
     Ennemi getEnnemi();
 
     void setIdSituation(int p_id);
-    void setEnnemi(int p_ennemi);
-    void setItem(int p_item);
     void setPathSituation(QString p_path);
     void setMessage(QString p_message);
     void setPathImage(QString p_path_image);
     void setPathNext(QString p_path_next);
     void setMessageChoix(QString p_message);
-
-
-  // void <QPushButton> ThreeChoice(QString choix1, QString choix2, QString choix3,  QWidget *zoneCentrale);
-   //void <QPushButton> FourChoice(QString choix1, QString choix2, QString choix3, QString choix4,  QWidget *zoneCentrale);
 
 
 };
