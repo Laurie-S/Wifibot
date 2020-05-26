@@ -14,6 +14,7 @@
 #include <QVBoxLayout>
 #include <QObject>
 #include <QLabel>
+#include <QProgressBar>
 #include "situation.h"
 #include "personnage.h"
 
@@ -75,7 +76,7 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     Situation situation_actuelle;
     QString next_path;
     Personnage hero;
-
+    QProgressBar *barre_vie;
 
 };
 

@@ -19,7 +19,8 @@ MaFenetre::MaFenetre() : QWidget()
 
     setFixedSize(longueur, largeur);
      Ennemi ennemi;
-     hero.setHealth(20);
+     int health =20;
+     hero.setHealth(health);
      hero.setNamePersonnage("Aventurier");
      Situation sit(0, 4, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "", ennemi);
     setSituationActuelle(sit);
@@ -107,6 +108,20 @@ MaFenetre::MaFenetre() : QWidget()
     m_bouton_choix4->setCursor(Qt::PointingHandCursor);
     QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
     m_bouton_choix4->setVisible(false);
+
+    barre_vie = new QProgressBar(this);
+    barre_vie->setMinimum(0);
+    barre_vie->setMaximum(health);
+    barre_vie->setValue(15);
+
+    barre_vie->setGeometry(760, 20, 170, 15);
+
+
+    barre_vie->setVisible(false);
+
+
+
+
 
 
    // Menu();
@@ -207,8 +222,8 @@ void MaFenetre::Situ(){
     QString message;
     QString image;
     int health;
-    health = hero.getSize(); // faire le slider avec la santé
-
+    barre_vie->setVisible(true);
+    health = hero.getHealth(); // faire le slider avec la santé
    // Situation sit(1, 0, 0, 4, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "");
     nombre_choix = situation_actuelle.getNbChoix();
     message = situation_actuelle.getMessage();
@@ -277,7 +292,7 @@ void MaFenetre::loadChoix(){
        path = getNextPath();
        QString message;
        Situation nouvelle;
-       Ennemi ennemi("monstre", 20);
+       Ennemi ennemi("monstre", 2);
        int degat;
        int vie;
        vie = hero.getHealth();
