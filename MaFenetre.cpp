@@ -7,6 +7,8 @@
 #include <QLineEdit>
 #include <QPicture>
 
+QString adresse = "C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot"; // adresse des fichiers
+
 MaFenetre::MaFenetre() : QWidget()
 {
     longueur = 900;
@@ -19,10 +21,10 @@ MaFenetre::MaFenetre() : QWidget()
      Ennemi ennemi;
      hero.setHealth(20);
      hero.setNamePersonnage("Aventurier");
-     Situation sit(1, 0, 0, 4, "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "", ennemi);
+     Situation sit(1, 0, 0, 4, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "", ennemi);
     setSituationActuelle(sit);
     Image = new QLabel(this);
-    Image->setPixmap(QPixmap("C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg"));
+    Image->setPixmap(QPixmap(adresse+"/Main_Menu.jpg"));
     Image->setVisible(false);
 
 
@@ -126,7 +128,7 @@ void MaFenetre::Menu(){
     m_bouton_Retour_Menu->setVisible(false);
     m_bouton_start->setVisible(false);
 
-    Image->setPixmap(QPixmap("C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg"));
+    Image->setPixmap(QPixmap(adresse+"/Main_Menu.jpg"));
 
 
 
@@ -148,7 +150,7 @@ void MaFenetre::Nouvelle_partie(){
     m_texte->setText("NOUVELLE PARTIE");
     m_texte->setGeometry(longueur/2-(taille_texte("NOUVELLE PARTIE")/2),largeur/3-50, taille_texte("NOUVELLE PARTIE") , 30);
 
-   Image->setPixmap(QPixmap("C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/feat-1800x0-c-center.jpg"));
+   Image->setPixmap(QPixmap(adresse+"/feat-1800x0-c-center.jpg"));
 
 
     m_bouton_start->setVisible(true);
@@ -207,7 +209,7 @@ void MaFenetre::Situ(){
     int health;
     health = hero.getSize(); // faire le slider avec la santé
 
-   // Situation sit(1, 0, 0, 4, "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "");
+   // Situation sit(1, 0, 0, 4, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "");
     nombre_choix = situation_actuelle.getNbChoix();
     message = situation_actuelle.getMessage();
     image = situation_actuelle.getPathImage();
@@ -287,7 +289,7 @@ void MaFenetre::loadChoix(){
             m_texte->setText(message);
             m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
             m_texte->setVisible(true);
-            Image->setPixmap(QPixmap("C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/Mort.jpg"));
+            Image->setPixmap(QPixmap(adresse+"/Mort.jpg"));
             m_bouton_quitter->setVisible(true);
             m_bouton_continuer->setVisible(false);
 
@@ -296,7 +298,7 @@ void MaFenetre::loadChoix(){
             message = "chargement de la nouvelle situation : " + path + QString(vie);
            //faire le chargement et récupérer la situation voulue avec un nouvelle = ?
 
-            Situation sit(1, 0, 0, 3, "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test/forest-chemin.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " obscur", "lumineux", "retour en arrière", "", "Vie", "Mort !", "", "", ennemi);
+            Situation sit(1, 0, 0, 3, adresse+"/forest-chemin.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " obscur", "lumineux", "retour en arrière", "", "Vie", "Mort !", "", "", ennemi);
             setSituationActuelle(sit);
             m_texte->setText(message);
             m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
