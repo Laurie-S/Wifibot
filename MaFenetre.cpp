@@ -19,7 +19,7 @@ MaFenetre::MaFenetre() : QWidget()
 
     setFixedSize(longueur, largeur);
      Ennemi ennemi;
-     int health =20;
+     int health =100;
      hero.setHealth(health);
      hero.setNamePersonnage("Aventurier");
      Situation sit(0, 3, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "", ennemi);
@@ -110,9 +110,8 @@ MaFenetre::MaFenetre() : QWidget()
     m_bouton_choix4->setVisible(false);
 
     barre_vie = new QProgressBar(this);
-    barre_vie->setMinimum(0);
     barre_vie->setMaximum(health);
-    barre_vie->setValue(20);
+    barre_vie->setValue(health);
 
     barre_vie->setGeometry(760, 20, 170, 15);
 
@@ -347,7 +346,12 @@ void MaFenetre::Choix1(){
          vie = hero.getHealth();
          vie = vie - degat;
          hero.setHealth(vie);
-         barre_vie->setValue(vie);
+         if(vie<= 0){
+             barre_vie->setValue(0);
+         }
+         else{
+            barre_vie->setValue(vie);
+         }
          message = message + "\n Vous avez reçu une blessures ";
 
     }
@@ -367,8 +371,34 @@ void MaFenetre::Choix1(){
 void MaFenetre::Choix2(){
     QString message;
     message = " Vous avez choisit  : ' " + situation_actuelle.getChoix2() + " ' ";
+
+    if(situation_actuelle.getIdSituation() == 1){
+         Ennemi ennemi;
+         int degat;
+         int vie;
+         int chance;
+         qsrand(time(NULL));
+         ennemi = situation_actuelle.getEnnemi();
+         degat = ennemi.getAttack();
+         vie = hero.getHealth();
+         chance = (rand() % (2*degat - 0 + 1)) + 0;
+         vie = vie - chance;
+         hero.setHealth(vie);
+         if(vie<= 0){
+             barre_vie->setValue(0);
+         }
+         else{
+            barre_vie->setValue(vie);
+         }
+         if(chance==0){
+           message = message + "\n Quelle chance ! Aucune blesssure subie ";
+         }
+         else{
+         message = message + "\n Pas de chance ! Vous avez reçu une blessures ";
+        }
+    }
     m_texte->setText(message);
-     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
+     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
     m_texte->setVisible(true);
     QString path = situation_actuelle.getPathNext2();
     setNextPath(path);
