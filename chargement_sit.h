@@ -1,31 +1,24 @@
 #include <QApplication>
 #include <QPushButton>
 #include <QHBoxLayout>
-#include "item.h"
 #include "ennemi.h"
 #include <QLabel>
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QString>
-#include "personnage.h"
 #include "situation.h"
-#include "MaFenetre.h"
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
-#include "chargement_sit.h"
+#include <QFile>
+#include <QTextStream>
+
+
+#ifndef CHARGEMENT_SIT_H
+#define CHARGEMENT_SIT_H
+
+Situation charger_sit(int nbr, QString adresse);
 
 
 
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-
-    MaFenetre fenetre;
-    fenetre.Menu();
-
-
-    fenetre.show();
-
-    return app.exec();
-}
+#endif // CHARGEMENT_SIT_H

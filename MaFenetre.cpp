@@ -7,7 +7,7 @@
 #include <QLineEdit>
 #include <QPicture>
 
-QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test"; // adresse des fichiers
+QString adresse = "C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot"; // adresse des fichiers
 
 MaFenetre::MaFenetre() : QWidget()
 {
@@ -22,8 +22,10 @@ MaFenetre::MaFenetre() : QWidget()
      int health =100;
      hero.setHealth(health);
      hero.setNamePersonnage("Aventurier");
-     Situation sit(0, 3, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "", ennemi);
-    setSituationActuelle(sit);
+
+     Situation sit = charger_sit(1,adresse);
+     setSituationActuelle(sit);
+
     Image = new QLabel(this);
     Image->setPixmap(QPixmap(adresse+"/Main_Menu.jpg"));
     Image->setVisible(false);
@@ -209,10 +211,10 @@ void MaFenetre::setSituationActuelle(Situation situation){
     situation_actuelle = situation;
 }
 
-void MaFenetre::setNextPath(QString path){
+void MaFenetre::setNextPath(int path){
     next_path = path;
 }
-QString MaFenetre::getNextPath(){
+int MaFenetre::getNextPath(){
     return next_path;
 }
 
@@ -287,7 +289,7 @@ void MaFenetre::Situ(){
 }
 
 void MaFenetre::loadChoix(){
-       QString path;
+       int path;
        path = getNextPath();
        QString message;
        Situation nouvelle;
@@ -295,7 +297,13 @@ void MaFenetre::loadChoix(){
        int vie;
        vie = hero.getHealth();
        //barre_vie->setValue(vie);
-        if(vie <= 0){
+
+       message = "chargement de la nouvelle situation : " + QString(vie);
+      //faire le chargement et récupérer la situation voulue avec un nouvelle = ?
+
+        if(vie <= 0 || path == 0){
+            Situation sit = charger_sit(0, adresse);
+            setSituationActuelle(sit);
             message = "Vous êtes mort";
             m_texte->setText(message);
             m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
@@ -307,11 +315,9 @@ void MaFenetre::loadChoix(){
 
         }
         else{
-            message = "chargement de la nouvelle situation : " + path + QString(vie);
-           //faire le chargement et récupérer la situation voulue avec un nouvelle = ?
-
-            Situation sit(1, 3, adresse+"/forest-chemin.jpg", "Choississez le chemin à prendre dans la forêt avec Ennemi", "chemin actuel", " obscur", "lumineux", "retour en arrière", "", "Vie", "Mort !", "", "", ennemi);
+            Situation sit = charger_sit(path, adresse);
             setSituationActuelle(sit);
+
             if(situation_actuelle.getIdSituation()== 2){ // situation victoire ?
                 message = "Félicitation vous avez trouvé le trésor";
                 m_texte->setText(message);
@@ -358,7 +364,7 @@ void MaFenetre::Choix1(){
     m_texte->setText(message);
      m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
     m_texte->setVisible(true);
-    QString path = situation_actuelle.getPathNext1();
+    int path = situation_actuelle.getPathNext1();
     setNextPath(path);
     m_bouton_choix1->setVisible(false);
     m_bouton_choix2->setVisible(false);
@@ -400,7 +406,7 @@ void MaFenetre::Choix2(){
     m_texte->setText(message);
      m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
     m_texte->setVisible(true);
-    QString path = situation_actuelle.getPathNext2();
+    int path = situation_actuelle.getPathNext2();
     setNextPath(path);
     m_bouton_choix1->setVisible(false);
     m_bouton_choix2->setVisible(false);
@@ -414,7 +420,7 @@ void MaFenetre::Choix3(){
     m_texte->setText(message);
      m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
     m_texte->setVisible(true);
-    QString path = situation_actuelle.getPathNext3();
+    int path = situation_actuelle.getPathNext3();
     setNextPath(path);
     m_bouton_choix1->setVisible(false);
     m_bouton_choix2->setVisible(false);
@@ -429,7 +435,7 @@ void MaFenetre::Choix4(){
     m_texte->setText(message);
      m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
     m_texte->setVisible(true);
-    QString path = situation_actuelle.getPathNext4();
+    int path = situation_actuelle.getPathNext4();
     setNextPath(path);
     m_bouton_choix1->setVisible(false);
     m_bouton_choix2->setVisible(false);

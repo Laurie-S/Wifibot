@@ -1,0 +1,7 @@
+1;0;/Mort.jpg;Vous êtes mort;chemin actuel; ; ; ; ;3;1;0;0;monstre;40;
+1;3;/forest-chemin.jpg;Choississez le chemin a prendre dans la foret avec Ennemi;chemin actuel;obscur;lumineux;retour en arriere; ;3;2;0;1;monstre;10;
+0;4;/forest-chemin.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;droite;gauche;retour en arriere;Tout droit;0;0;1;3;monstre;0;
+0;4;/forest-chemin.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;droite;gauche;retour en arriere;Tout droit;0;0;1;4;monstre;0;
+0;4;/forest-chemin.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;droite;gauche;retour en arriere;Tout droit;0;0;2;5;monstre;0;
+0;4;/forest-chemin.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;droite;gauche;retour en arriere;Tout droit;0;0;3;6;monstre;0;
+2;0;/victoire.jpg;Felicitation vous avez trouve le tresor;chemin actuel;obscur;lumineux;retour en arriere; ;3;1;0;0;non;0;

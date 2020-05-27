@@ -17,6 +17,8 @@
 #include <QProgressBar>
 #include "situation.h"
 #include "personnage.h"
+#include "chargement_sit.h"
+
 
 class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
 {
@@ -34,8 +36,8 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     QLabel* getText();
     Situation getSituationActuelle();
     void setSituationActuelle(Situation situation);
-    void setNextPath(QString path);
-    QString getNextPath();
+    void setNextPath(int path);
+    int getNextPath();
     Personnage getPersonnage();
 
 
@@ -74,7 +76,7 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     QLabel *m_texte;
     QLineEdit *m_pseudo;
     Situation situation_actuelle;
-    QString next_path;
+    int next_path;
     Personnage hero;
     QProgressBar *barre_vie;
 

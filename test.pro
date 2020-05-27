@@ -3,6 +3,7 @@ TEMPLATE += app
 QT += widgets
 SOURCES += \
     MaFenetre.cpp \
+    chargement_sit.cpp \
     ennemi.cpp \
     item.cpp \
     main.cpp \
@@ -11,6 +12,7 @@ SOURCES += \
 
 HEADERS += \
     MaFenetre.h \
+    chargement_sit.h \
     ennemi.h \
     item.h \
     personnage.h \
