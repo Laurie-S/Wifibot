@@ -6,8 +6,9 @@
 #include <QFontMetrics>
 #include <QLineEdit>
 #include <QPicture>
+#include "item.h"
 
-QString adresse = "C:/Users/Laurie/Documents/_COURS_/3A/Corona/Projet/wifibot"; // adresse des fichiers
+QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test"; // adresse des fichiers
 
 MaFenetre::MaFenetre() : QWidget()
 {
@@ -111,11 +112,44 @@ MaFenetre::MaFenetre() : QWidget()
     QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
     m_bouton_choix4->setVisible(false);
 
+//inventaire
+    m_bouton_item1= new QPushButton("", this);
+   // m_bouton_item1->setCursor(Qt::PointingHandCursor);
+    //QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
+    m_bouton_item1->setGeometry(10, 300, 50, 50);
+    m_bouton_item1->setVisible(false);
+
+    m_bouton_item2= new QPushButton("", this);
+   // m_bouton_item2->setCursor(Qt::PointingHandCursor);
+   // QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
+    m_bouton_item2->setGeometry(10, 350, 50, 50);
+    m_bouton_item2->setVisible(false);
+
+    m_bouton_item3= new QPushButton("", this);
+   // m_bouton_item3->setCursor(Qt::PointingHandCursor);
+   // QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
+    m_bouton_item3->setGeometry(10, 400, 50, 50);
+    m_bouton_item3->setVisible(false);
+
+    m_bouton_item4= new QPushButton("", this);
+   // m_bouton_item4->setCursor(Qt::PointingHandCursor);
+   //QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
+    m_bouton_item4->setGeometry(10, 450, 50, 50);
+    m_bouton_item4->setVisible(false);
+
+    m_bouton_item5= new QPushButton("", this);
+    //m_bouton_item5->setCursor(Qt::PointingHandCursor);
+   // QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
+    m_bouton_item5->setGeometry(10, 500, 50, 50);
+    m_bouton_item5->setVisible(false);
+
+
+//barre de vie
     barre_vie = new QProgressBar(this);
     barre_vie->setMaximum(health);
     barre_vie->setValue(health);
 
-    barre_vie->setGeometry(760, 20, 170, 15);
+    barre_vie->setGeometry(761, 20, 170, 15);
 
 
     barre_vie->setVisible(false);
@@ -218,10 +252,110 @@ int MaFenetre::getNextPath(){
     return next_path;
 }
 
+
+void MaFenetre::affichageInventaire(){
+    QList<Item> inventaire;
+    QString objet1;
+    QString objet2;
+     QString objet3;
+    QString objet4;
+    QString objet5;
+    QString nom_objet1;
+    QString nom_objet2;
+    QString nom_objet3;
+    QString nom_objet4;
+    QString nom_objet5;
+
+    Item sword(1, "épée", 0, 0, "/epee.png");
+    hero.addItem(sword);
+    inventaire = hero.getInventory();
+    int taille = inventaire.size();
+
+    switch(taille){
+        case 1 :
+            objet1 = inventaire[0].getPathItem();
+            m_bouton_item1->setIcon(QIcon (adresse+objet1));
+            nom_objet1 = inventaire[0].getNameItem();
+            m_bouton_item1->setToolTip(nom_objet1);
+          break;
+        case 2 :
+            objet1 = inventaire[0].getPathItem();
+            m_bouton_item1->setIcon(QIcon (adresse+objet1));
+            objet2 = inventaire[1].getPathItem();
+            m_bouton_item2->setIcon(QIcon (adresse+objet2));
+          break;
+        case 3 :
+            objet1 = inventaire[0].getPathItem();
+            m_bouton_item1->setIcon(QIcon (adresse+objet1));
+            nom_objet1 = inventaire[0].getNameItem();
+            m_bouton_item1->setToolTip(nom_objet1);
+            objet2 = inventaire[1].getPathItem();
+            m_bouton_item2->setIcon(QIcon (adresse+objet2));
+            nom_objet2 = inventaire[1].getNameItem();
+            m_bouton_item2->setToolTip(nom_objet2);
+            objet3 = inventaire[2].getPathItem();
+            m_bouton_item3->setIcon(QIcon (adresse+objet3));
+            nom_objet3 = inventaire[2].getNameItem();
+            m_bouton_item3->setToolTip(nom_objet3);
+          break;
+        case 4 :
+            objet1 = inventaire[0].getPathItem();
+            m_bouton_item1->setIcon(QIcon (adresse+objet1));
+            nom_objet1 = inventaire[0].getNameItem();
+            m_bouton_item1->setToolTip(nom_objet1);
+            objet2 = inventaire[1].getPathItem();
+            m_bouton_item2->setIcon(QIcon (adresse+objet2));
+            nom_objet2 = inventaire[1].getNameItem();
+            m_bouton_item2->setToolTip(nom_objet2);
+            objet3 = inventaire[2].getPathItem();
+            m_bouton_item3->setIcon(QIcon (adresse+objet3));
+            nom_objet2 = inventaire[2].getNameItem();
+            m_bouton_item3->setToolTip(nom_objet3);
+            objet4 = inventaire[3].getPathItem();
+            m_bouton_item4->setIcon(QIcon (adresse+objet4));
+            nom_objet4 = inventaire[3].getNameItem();
+            m_bouton_item4->setToolTip(nom_objet4);
+          break;
+        case 5 :
+            objet1 = inventaire[0].getPathItem();
+            m_bouton_item1->setIcon(QIcon (adresse+objet1));
+            nom_objet1 = inventaire[0].getNameItem();
+            m_bouton_item1->setToolTip(nom_objet1);
+            objet2 = inventaire[1].getPathItem();
+            m_bouton_item2->setIcon(QIcon (adresse+objet2));
+            nom_objet2 = inventaire[1].getNameItem();
+            m_bouton_item2->setToolTip(nom_objet2);
+            objet3 = inventaire[2].getPathItem();
+            m_bouton_item3->setIcon(QIcon (adresse+objet3));
+            nom_objet3 = inventaire[2].getNameItem();
+            m_bouton_item3->setToolTip(nom_objet3);
+            objet4 = inventaire[3].getPathItem();
+            m_bouton_item4->setIcon(QIcon (adresse+objet4));
+            nom_objet4 = inventaire[3].getNameItem();
+            m_bouton_item4->setToolTip(nom_objet4);
+            objet5 = inventaire[4].getPathItem();
+            m_bouton_item5->setIcon(QIcon (adresse+objet5));
+            nom_objet5 = inventaire[4].getNameItem();
+            m_bouton_item5->setToolTip(nom_objet5);
+          break;
+      }
+
+    m_bouton_item1->setVisible(true);
+    m_bouton_item2->setVisible(true);
+    m_bouton_item3->setVisible(true);
+    m_bouton_item4->setVisible(true);
+    m_bouton_item5->setVisible(true);
+
+}
+
 void MaFenetre::Situ(){
     int nombre_choix;
     QString message;
     QString image;
+    QString objet;
+
+    affichageInventaire();
+
     barre_vie->setVisible(true);
 
 
@@ -270,28 +404,8 @@ void MaFenetre::Situ(){
         QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT(Choix4()));
     }
 
-/*
-    if(nombre_choix == 4){
-        m_bouton_choix1->setGeometry(longueur/2-bouton_long, largeur-2*bouton_larg, bouton_long, bouton_larg);
-        m_bouton_choix2->setGeometry(longueur/2, largeur-2*bouton_larg, bouton_long, bouton_larg);
-        m_bouton_choix3->setGeometry(longueur/2-bouton_long, largeur-bouton_larg, bouton_long, bouton_larg);
-        m_bouton_choix4->setGeometry(longueur/2, largeur-bouton_larg, bouton_long, bouton_larg);
-
-    }
-
-    if(nombre_choix == 3){
-        m_bouton_choix1->setGeometry(longueur/2-bouton_long/2, largeur-2*bouton_larg, bouton_long, bouton_larg);
-        m_bouton_choix2->setGeometry(longueur/2-bouton_long, largeur-bouton_larg, bouton_long, bouton_larg);
-        m_bouton_choix3->setGeometry(longueur/2, largeur-bouton_larg, bouton_long, bouton_larg);
-
-    }
-    if(nombre_choix == 2){
-        m_bouton_choix1->setGeometry(longueur/2-bouton_long, largeur-bouton_larg, bouton_long, bouton_larg);
-        m_bouton_choix2->setGeometry(longueur/2, largeur-bouton_larg, bouton_long, bouton_larg);
-
-    }*/
-
 }
+
 
 void MaFenetre::loadChoix(){
        int path;

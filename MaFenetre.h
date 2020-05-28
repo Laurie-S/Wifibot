@@ -31,6 +31,11 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     QPushButton* getBoutonChoix2();
     QPushButton* getBoutonChoix3();
     QPushButton* getBoutonChoix4();
+    QPushButton* getBoutonItem1();
+    QPushButton* getBoutonItem2();
+    QPushButton* getBoutonItem3();
+    QPushButton* getBoutonItem4();
+    QPushButton* getBoutonItem5();
     QPushButton* getBoutonContinuer();
     QLabel* getImage();
     QLabel* getText();
@@ -39,6 +44,7 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     void setNextPath(int path);
     int getNextPath();
     Personnage getPersonnage();
+    void affichageInventaire();
 
 
 
@@ -68,6 +74,11 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     QPushButton *m_bouton_choix2;
     QPushButton *m_bouton_choix3;
     QPushButton *m_bouton_choix4;
+    QPushButton *m_bouton_item1;
+    QPushButton *m_bouton_item2;
+    QPushButton *m_bouton_item3;
+    QPushButton *m_bouton_item4;
+    QPushButton *m_bouton_item5;
     int largeur;
     int longueur;
     int bouton_larg;

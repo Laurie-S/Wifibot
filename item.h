@@ -5,6 +5,7 @@
 class Item {
 
 private :
+    int id;
    QString name;
    int damage;
    int heal;
@@ -12,14 +13,15 @@ private :
 
 public:
     Item();
-    Item(QString p_name, int p_damage, int p_healt, QString p_path);
+    Item(int p_id, QString p_name, int p_damage, int p_healt, QString p_path);
     ~Item();
-
+    int getIdItem();
     QString getNameItem();
     int getDamage();
     int getHeal();
     QString getPathItem();
 
+    void setIdItem(int p_id);
     void setNameItem(QString p_name);
     void setDamage(int p_damage);
     void setHeal(int p_heal);

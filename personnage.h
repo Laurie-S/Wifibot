@@ -9,7 +9,7 @@ class Personnage{
 private:
     QString name;
     int health;
-    QList<Item *> inventory;
+    QList<Item> inventory;
     int size = 5;
 
 public:
@@ -19,16 +19,16 @@ public:
 
     QString getNamePersonnage();
     int getHealth();
-    QList<Item *> getInventory();
+    QList<Item> getInventory();
     int getSize();
 
     void setNamePersonnage(QString p_name);
     void setHealth(int p_health);
-    void setInventory(QList<Item *> p_inventory);
+    void setInventory(QList<Item> p_inventory);
     void setSize(int p_size);
 
-    void removeItem(Item *objet);
-    QString addItem(Item *objet);
+    void removeItem(Item objet);
+    QString addItem(Item objet);
 
 };
 
