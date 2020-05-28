@@ -27,6 +27,7 @@ public:
     void setInventory(QList<Item> p_inventory);
     void setSize(int p_size);
 
+    QString utiliserPotion();
     void removeItem(Item objet);
     QString addItem(Item objet);
 

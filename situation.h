@@ -12,7 +12,7 @@
 class Situation{
 
 private:
-    int id; // 0 = normale, 1 = ennemi present et situation mortelle, 2= situation victoire
+    int id; // 0 = normale, 1 = ennemi present et situation mortelle, 2= situation victoire, ,3 = item
     int nb_choix;
     QString path_image;
     QString path_actuel;
@@ -27,10 +27,11 @@ private:
     QString choix3;
     QString choix4;
     Ennemi monstre;
+    Item item;
 
 public:
     Situation();
-    Situation(int p_id, int p_nb_choix, QString p_path_image, QString message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, int p_path_next1, int p_path_next2, int p_path_next3, int p_path_next4, Ennemi p_monstre);
+    Situation(int p_id, int p_nb_choix, QString p_path_image, QString message, QString p_path_actuel, QString p_choix1, QString p_choix2, QString p_choix3, QString p_choix4, int p_path_next1, int p_path_next2, int p_path_next3, int p_path_next4, Ennemi p_monstre, Item p_item);
     ~Situation();
 
     int getIdSituation();
@@ -49,6 +50,7 @@ public:
     int getPathNext3();
     int getPathNext4();
     Ennemi getEnnemi();
+    Item getItem();
 
     void setIdSituation(int p_id);
     void setPathSituation(QString p_path);

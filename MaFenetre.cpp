@@ -266,7 +266,7 @@ void MaFenetre::affichageInventaire(){
     QString nom_objet4;
     QString nom_objet5;
 
-    Item sword(1, "épée", 0, 0, "/epee.png");
+    Item sword(1, "épée", 0, 20, "/epee.png");
     hero.addItem(sword);
     inventaire = hero.getInventory();
     int taille = inventaire.size();
@@ -415,10 +415,6 @@ void MaFenetre::loadChoix(){
        Ennemi ennemi("monstre", 10);
        int vie;
        vie = hero.getHealth();
-       //barre_vie->setValue(vie);
-
-       message = "chargement de la nouvelle situation : " + QString(vie);
-      //faire le chargement et récupérer la situation voulue avec un nouvelle = ?
 
         if(vie <= 0 || path == 0){
             Situation sit = charger_sit(0, adresse);
@@ -480,6 +476,29 @@ void MaFenetre::Choix1(){
          message = message + "\n Vous avez reçu une blessures ";
 
     }
+
+    if(situation_actuelle.getIdSituation()==3){
+        Item item;
+        int degat;
+        int vie;
+        vie = hero.getHealth();
+        item = situation_actuelle.getItem();
+        degat = item.getDamage();
+        message = message +"\n Objet ramassé :" +item.getNameItem();
+        if(degat !=0){
+            vie = vie - degat;
+            message = message + "\n c'est empoisonné !";
+        }
+        else{
+            message = message + hero.addItem(item);
+        }
+
+    }
+
+    if(hero.getHealth() < 80){ // 80 = santé max - point de vie santé potion
+        hero.utiliserPotion();
+    }
+
     m_texte->setText(message);
      m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
     m_texte->setVisible(true);
@@ -522,6 +541,7 @@ void MaFenetre::Choix2(){
          message = message + "\n Pas de chance ! Vous avez reçu une blessures ";
         }
     }
+
     m_texte->setText(message);
      m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
     m_texte->setVisible(true);
