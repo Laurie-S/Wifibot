@@ -254,15 +254,20 @@ void MaFenetre::Situ(){
     m_bouton_choix2->setText(situation_actuelle.getChoix2());
     QObject::connect(m_bouton_choix2, SIGNAL(clicked()), this, SLOT(Choix2()));
 
-    m_bouton_choix3->setText(situation_actuelle.getChoix3());
-    m_bouton_choix3->setVisible(true);
-    QObject::connect(m_bouton_choix3, SIGNAL(clicked()), this, SLOT(Choix3()));
+    m_bouton_choix3->setVisible(false);
+
+    if(nombre_choix == 3 || nombre_choix ==4){
+        m_bouton_choix3->setText(situation_actuelle.getChoix3());
+        m_bouton_choix3->setVisible(true);
+        QObject::connect(m_bouton_choix3, SIGNAL(clicked()), this, SLOT(Choix3()));
+    }
+
     m_bouton_choix4->setVisible(false);
 
     if(nombre_choix ==4){
-    m_bouton_choix4->setText(situation_actuelle.getChoix4());
-    m_bouton_choix4->setVisible(true);
-    QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT(Choix4()));
+        m_bouton_choix4->setText(situation_actuelle.getChoix4());
+        m_bouton_choix4->setVisible(true);
+        QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT(Choix4()));
     }
 
 /*
