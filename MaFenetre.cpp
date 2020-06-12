@@ -8,7 +8,9 @@
 #include <QPicture>
 #include "item.h"
 
-QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test"; // adresse des fichiers
+// adresse des fichiers
+//QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
+QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";
 
 MaFenetre::MaFenetre() : QWidget()
 {
@@ -257,7 +259,7 @@ void MaFenetre::affichageInventaire(){
     QList<Item> inventaire;
     QString objet1;
     QString objet2;
-     QString objet3;
+    QString objet3;
     QString objet4;
     QString objet5;
     QString nom_objet1;

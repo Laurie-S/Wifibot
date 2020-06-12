@@ -2,6 +2,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include "ennemi.h"
+#include "item.h"
 #include <QLabel>
 #include <QMessageBox>
 #include <QInputDialog>
