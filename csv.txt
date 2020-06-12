@@ -1,0 +1,45 @@
+case A
+type de situation (0 sans enemmi,1 avec enemmi,2 victoire ,3 objet)
+
+case B
+nombre de choix
+
+case C
+adresse de l'image
+
+case D
+texte en haut de la situation
+
+case E
+jsp j'ai tjrs ecrit la meme chose
+
+case F/G/H/I
+ce qui est ecrit dans la case 1,2,3,4
+
+case J/K/L/M
+l'adresse de la prochaine situation de la case 1,2,3,4
+
+case N
+Nom de l'ennemi
+
+case O
+Nombre de degat
+
+case P
+Id de l'item
+
+case Q 
+nom de l'item
+
+case R
+Degat de l'item
+
+case S
+"Soin" de l'item
+
+case T
+adresse de l'image de l'item
+
+
+
+
