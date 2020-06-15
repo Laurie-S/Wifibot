@@ -522,7 +522,9 @@ void MaFenetre::Choix1(){
     }
 
     if(hero.getHealth() < 80){ // 80 = santé max - point de vie santé potion
-      //  hero.utiliserPotion();
+       message = message + hero.utiliserSoin(1);
+      int vie = hero.getHealth();
+       barre_vie->setValue(vie);
     }
 
     m_texte->setText(message);

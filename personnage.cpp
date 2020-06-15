@@ -79,14 +79,12 @@ QString Personnage::addItem(Item objet){
 }
 
 QString Personnage::utiliserSoin(int id){
-    bool find = false;
-    QString nom = "Potion de soin";
     QString message;
     for(int i=0; i<inventory.size(); i++){
-      if((inventory[i]).getNameItem() == nom && find == false){
-            setHealth(health + 20);
+      if((inventory[i]).getIdItem() == id){
+            setHealth(health +( inventory[i]).getHeal());
+            message = " Utilisation de l'objet "+ (inventory[i]).getNameItem();
             inventory.removeAt(i);
-            message = "Potion de soin utilisée";
       }
     }
     return message;
