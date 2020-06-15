@@ -9,8 +9,8 @@
 #include "item.h"
 
 // adresse des fichiers
-//QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
-QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";
+QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
+//QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";
 
 MaFenetre::MaFenetre() : QWidget()
 {
@@ -25,6 +25,8 @@ MaFenetre::MaFenetre() : QWidget()
      int health =100;
      hero.setHealth(health);
      hero.setNamePersonnage("Aventurier");
+     Item invent(0, "Inventaire", 0, 0, "/bag.png");
+     hero.addItem(invent);
 
      Situation sit = charger_sit(1,adresse);
      setSituationActuelle(sit);
@@ -116,34 +118,30 @@ MaFenetre::MaFenetre() : QWidget()
 
 //inventaire
     m_bouton_item1= new QPushButton("", this);
-   // m_bouton_item1->setCursor(Qt::PointingHandCursor);
-    //QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
-    m_bouton_item1->setGeometry(10, 300, 50, 50);
+    m_bouton_item1->setGeometry(10, 250, 60, 50);
     m_bouton_item1->setVisible(false);
 
     m_bouton_item2= new QPushButton("", this);
-   // m_bouton_item2->setCursor(Qt::PointingHandCursor);
-   // QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
-    m_bouton_item2->setGeometry(10, 350, 50, 50);
+    m_bouton_item2->setGeometry(15, 300, 50, 50);
     m_bouton_item2->setVisible(false);
 
     m_bouton_item3= new QPushButton("", this);
-   // m_bouton_item3->setCursor(Qt::PointingHandCursor);
-   // QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
-    m_bouton_item3->setGeometry(10, 400, 50, 50);
+    m_bouton_item3->setGeometry(15, 350, 50, 50);
     m_bouton_item3->setVisible(false);
 
     m_bouton_item4= new QPushButton("", this);
-   // m_bouton_item4->setCursor(Qt::PointingHandCursor);
-   //QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
-    m_bouton_item4->setGeometry(10, 450, 50, 50);
+    m_bouton_item4->setGeometry(15, 400, 50, 50);
     m_bouton_item4->setVisible(false);
 
     m_bouton_item5= new QPushButton("", this);
-    //m_bouton_item5->setCursor(Qt::PointingHandCursor);
-   // QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
-    m_bouton_item5->setGeometry(10, 500, 50, 50);
+    m_bouton_item5->setGeometry(15, 450, 50, 50);
     m_bouton_item5->setVisible(false);
+
+    m_bouton_item6= new QPushButton("", this);
+    m_bouton_item6->setGeometry(15, 500, 50, 50);
+    m_bouton_item6->setVisible(false);
+
+
 
 
 //barre de vie
@@ -262,14 +260,14 @@ void MaFenetre::affichageInventaire(){
     QString objet3;
     QString objet4;
     QString objet5;
+    QString objet6;
     QString nom_objet1;
     QString nom_objet2;
     QString nom_objet3;
     QString nom_objet4;
     QString nom_objet5;
+    QString nom_objet6;
 
-    Item sword(1, "épée", 0, 20, "/epee.png");
-    hero.addItem(sword);
     inventaire = hero.getInventory();
     int taille = inventaire.size();
 
@@ -339,6 +337,31 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item5->setIcon(QIcon (adresse+objet5));
             nom_objet5 = inventaire[4].getNameItem();
             m_bouton_item5->setToolTip(nom_objet5);
+    case 6 :
+        objet1 = inventaire[0].getPathItem();
+        m_bouton_item1->setIcon(QIcon (adresse+objet1));
+        nom_objet1 = inventaire[0].getNameItem();
+        m_bouton_item1->setToolTip(nom_objet1);
+        objet2 = inventaire[1].getPathItem();
+        m_bouton_item2->setIcon(QIcon (adresse+objet2));
+        nom_objet2 = inventaire[1].getNameItem();
+        m_bouton_item2->setToolTip(nom_objet2);
+        objet3 = inventaire[2].getPathItem();
+        m_bouton_item3->setIcon(QIcon (adresse+objet3));
+        nom_objet3 = inventaire[2].getNameItem();
+        m_bouton_item3->setToolTip(nom_objet3);
+        objet4 = inventaire[3].getPathItem();
+        m_bouton_item4->setIcon(QIcon (adresse+objet4));
+        nom_objet4 = inventaire[3].getNameItem();
+        m_bouton_item4->setToolTip(nom_objet4);
+        objet5 = inventaire[4].getPathItem();
+        m_bouton_item5->setIcon(QIcon (adresse+objet5));
+        nom_objet5 = inventaire[4].getNameItem();
+        m_bouton_item5->setToolTip(nom_objet5);
+        objet6 = inventaire[5].getPathItem();
+        m_bouton_item6->setIcon(QIcon (adresse+objet6));
+        nom_objet6 = inventaire[5].getNameItem();
+        m_bouton_item6->setToolTip(nom_objet6);
           break;
       }
 
@@ -347,6 +370,7 @@ void MaFenetre::affichageInventaire(){
     m_bouton_item3->setVisible(true);
     m_bouton_item4->setVisible(true);
     m_bouton_item5->setVisible(true);
+    m_bouton_item6->setVisible(true);
 
 }
 
@@ -360,8 +384,6 @@ void MaFenetre::Situ(){
 
     barre_vie->setVisible(true);
 
-
-   // Situation sit(1, 0, 0, 4, adresse+"/Main_Menu.jpg", "Choississez le chemin à prendre dans la forêt", "chemin actuel", " gauche", "droite", "retour en arrière", "", "GAUCHE !", "DROITE !", "", "");
     nombre_choix = situation_actuelle.getNbChoix();
     message = situation_actuelle.getMessage();
     image = situation_actuelle.getPathImage();
@@ -493,12 +515,14 @@ void MaFenetre::Choix1(){
         }
         else{
             message = message + hero.addItem(item);
+            Item sword(2, "épée", 0, 20, "/epee.png");
+            hero.addItem(sword);
         }
 
     }
 
     if(hero.getHealth() < 80){ // 80 = santé max - point de vie santé potion
-        hero.utiliserPotion();
+      //  hero.utiliserPotion();
     }
 
     m_texte->setText(message);

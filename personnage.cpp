@@ -9,7 +9,7 @@ Personnage::Personnage(){}
 Personnage::Personnage(QString p_name, int p_health){
    name = p_name;
    health = p_health;
-   size = 5;
+   size = 6;
 }
 
 
@@ -53,18 +53,32 @@ void Personnage::removeItem(Item objet){
 }
 
 QString Personnage::addItem(Item objet){
+    bool find = false;
     QString message;
-            if(inventory.size() == size){
-                message ="Impossible de prendre l'objet, votre inventaire est plein";
-            }
-            else{
-                inventory << objet;
-                message ="Ajouté à votre inventaire !";
-            }
+    for(int i =0; i<inventory.size(); i++){
+        if(inventory[i].getIdItem() == objet.getIdItem()){
+            find = true;
+        }
+    }
+    if(find == true){
+        message =" Vous possédez déjà cet objet dans votre inventaire";
+    }
+    else{
+
+        if(inventory.size() == size){
+            message =" Impossible de prendre l'objet, votre inventaire est plein";
+         }
+
+         else{
+            inventory << objet;
+             message =" Ajouté à votre inventaire !";
+          }
+    }
+
     return message;
 }
 
-QString Personnage::utiliserPotion(){
+QString Personnage::utiliserSoin(int id){
     bool find = false;
     QString nom = "Potion de soin";
     QString message;

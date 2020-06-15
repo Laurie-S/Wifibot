@@ -79,6 +79,7 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     QPushButton *m_bouton_item3;
     QPushButton *m_bouton_item4;
     QPushButton *m_bouton_item5;
+    QPushButton *m_bouton_item6;
     int largeur;
     int longueur;
     int bouton_larg;
