@@ -515,8 +515,16 @@ void MaFenetre::Choix1(){
         }
         else{
             message = message + hero.addItem(item);
-            Item sword(2, "épée", 0, 20, "/epee.png");
+            Item sword(2, "épée", 0, 20, "/fleurs.png");
             hero.addItem(sword);
+            Item baies(3, "épée", 0, 20, "/baies.png");
+            hero.addItem(baies);
+            Item champ(4, "épée", 0, 20, "/champignon.png");
+            hero.addItem(champ);
+            Item plantes(5, "épée", 0, 20, "/plantes.png");
+            hero.addItem(plantes);
+         //   Item plantes(2, "épée", 0, 20, "/fruits.png");
+           // hero.addItem(plantes);
         }
 
     }
