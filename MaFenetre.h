@@ -45,6 +45,7 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     int getNextPath();
     Personnage getPersonnage();
     void affichageInventaire();
+    QString soin();
 
 
 

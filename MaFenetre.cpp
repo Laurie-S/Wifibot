@@ -27,6 +27,8 @@ MaFenetre::MaFenetre() : QWidget()
      hero.setNamePersonnage("Aventurier");
      Item invent(0, "Inventaire", 0, 0, "/bag.png");
      hero.addItem(invent);
+   //  Item sword(5, "épée", 0, 0, "/epee.png");
+     //hero.addItem(sword);
 
      Situation sit = charger_sit(1,adresse);
      setSituationActuelle(sit);
@@ -252,6 +254,51 @@ int MaFenetre::getNextPath(){
     return next_path;
 }
 
+QString MaFenetre::soin(){
+    bool id1 = false;
+    bool id2 = false;
+    bool id3 = false;
+    bool id4 = false;
+    QList<Item> inventaire = hero.getInventory();
+    for(int i = 0; i< inventaire.size(); i++){
+        if(inventaire[i].getIdItem() == 1){
+            id1 = true;
+        }
+        if(inventaire[i].getIdItem() == 2){
+            id2 = true;
+        }
+        if(inventaire[i].getIdItem() == 3){
+            id3 = true;
+        }
+        if(inventaire[i].getIdItem() == 4){
+            id4 = true;
+        }
+    }
+    QString message = "";
+
+    if(hero.getHealth()<=50 && hero.getHealth()>0 && id1 == true){
+        message = message + hero.utiliserSoin(1);
+        int vie = hero.getHealth();
+        barre_vie->setValue(vie);
+    }
+    if(hero.getHealth()<=80 && hero.getHealth()>50 && id2 == true){
+        message = message + hero.utiliserSoin(2);
+        int vie = hero.getHealth();
+        barre_vie->setValue(vie);
+    }
+    if(hero.getHealth()<=90 && hero.getHealth()>80 && id3 == true){
+        message = message + hero.utiliserSoin(3);
+        int vie = hero.getHealth();
+        barre_vie->setValue(vie);
+    }
+    if(hero.getHealth()<=95 && hero.getHealth()>90 && id4 == true){
+        message = message + hero.utiliserSoin(4);
+        int vie = hero.getHealth();
+        barre_vie->setValue(vie);
+    }
+    return message;
+}
+
 
 void MaFenetre::affichageInventaire(){
     QList<Item> inventaire;
@@ -281,8 +328,10 @@ void MaFenetre::affichageInventaire(){
         case 2 :
             objet1 = inventaire[0].getPathItem();
             m_bouton_item1->setIcon(QIcon (adresse+objet1));
+            m_bouton_item1->setToolTip(nom_objet1);
             objet2 = inventaire[1].getPathItem();
             m_bouton_item2->setIcon(QIcon (adresse+objet2));
+            m_bouton_item2->setToolTip(nom_objet2);
           break;
         case 3 :
             objet1 = inventaire[0].getPathItem();
@@ -515,25 +564,15 @@ void MaFenetre::Choix1(){
         }
         else{
             message = message + hero.addItem(item);
-            Item sword(2, "épée", 0, 20, "/fleurs.png");
-            hero.addItem(sword);
             Item baies(3, "épée", 0, 20, "/baies.png");
             hero.addItem(baies);
-            Item champ(4, "épée", 0, 20, "/champignon.png");
-            hero.addItem(champ);
-            Item plantes(5, "épée", 0, 20, "/plantes.png");
-            hero.addItem(plantes);
-         //   Item plantes(2, "épée", 0, 20, "/fruits.png");
-           // hero.addItem(plantes);
+            Item fleurs(4, "épée", 0, 10, "/fleurs.png");
+            hero.addItem(fleurs);
+            Item sword(5, "épée", 0, 0, "/epee.png");
+            hero.addItem(sword);
         }
-
     }
-
-    if(hero.getHealth() < 80){ // 80 = santé max - point de vie santé potion
-       message = message + hero.utiliserSoin(1);
-      int vie = hero.getHealth();
-       barre_vie->setValue(vie);
-    }
+    message = message + soin();
 
     m_texte->setText(message);
      m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
@@ -577,7 +616,7 @@ void MaFenetre::Choix2(){
          message = message + "\n Pas de chance ! Vous avez reçu une blessures ";
         }
     }
-
+     message = message + soin();
     m_texte->setText(message);
      m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
     m_texte->setVisible(true);
