@@ -18,7 +18,7 @@
 #ifndef CHARGEMENT_SIT_H
 #define CHARGEMENT_SIT_H
 
-Situation charger_sit(int nbr, QString adresse);
+Situation charger_sit(int nbr, QString adresse, std::vector<int> arriere);
 
 
 

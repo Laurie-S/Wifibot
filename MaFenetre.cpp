@@ -6,11 +6,15 @@
 #include <QFontMetrics>
 #include <QLineEdit>
 #include <QPicture>
+#include <vector>
 #include "item.h"
 
 // adresse des fichiers
-QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
-//QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";
+//QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
+//QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";"
+QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
+
+std::vector<int> arriere;
 
 MaFenetre::MaFenetre() : QWidget()
 {
@@ -30,7 +34,9 @@ MaFenetre::MaFenetre() : QWidget()
    //  Item sword(5, "épée", 0, 0, "/epee.png");
      //hero.addItem(sword);
 
-     Situation sit = charger_sit(1,adresse);
+     arriere.push_back(1);
+     arriere.push_back(1);
+     Situation sit = charger_sit(1,adresse,arriere);
      setSituationActuelle(sit);
 
     Image = new QLabel(this);
@@ -386,32 +392,33 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item5->setIcon(QIcon (adresse+objet5));
             nom_objet5 = inventaire[4].getNameItem();
             m_bouton_item5->setToolTip(nom_objet5);
-    case 6 :
-        objet1 = inventaire[0].getPathItem();
-        m_bouton_item1->setIcon(QIcon (adresse+objet1));
-        nom_objet1 = inventaire[0].getNameItem();
-        m_bouton_item1->setToolTip(nom_objet1);
-        objet2 = inventaire[1].getPathItem();
-        m_bouton_item2->setIcon(QIcon (adresse+objet2));
-        nom_objet2 = inventaire[1].getNameItem();
-        m_bouton_item2->setToolTip(nom_objet2);
-        objet3 = inventaire[2].getPathItem();
-        m_bouton_item3->setIcon(QIcon (adresse+objet3));
-        nom_objet3 = inventaire[2].getNameItem();
-        m_bouton_item3->setToolTip(nom_objet3);
-        objet4 = inventaire[3].getPathItem();
-        m_bouton_item4->setIcon(QIcon (adresse+objet4));
-        nom_objet4 = inventaire[3].getNameItem();
-        m_bouton_item4->setToolTip(nom_objet4);
-        objet5 = inventaire[4].getPathItem();
-        m_bouton_item5->setIcon(QIcon (adresse+objet5));
-        nom_objet5 = inventaire[4].getNameItem();
-        m_bouton_item5->setToolTip(nom_objet5);
-        objet6 = inventaire[5].getPathItem();
-        m_bouton_item6->setIcon(QIcon (adresse+objet6));
-        nom_objet6 = inventaire[5].getNameItem();
-        m_bouton_item6->setToolTip(nom_objet6);
-          break;
+        break;
+        case 6 :
+            objet1 = inventaire[0].getPathItem();
+            m_bouton_item1->setIcon(QIcon (adresse+objet1));
+            nom_objet1 = inventaire[0].getNameItem();
+            m_bouton_item1->setToolTip(nom_objet1);
+            objet2 = inventaire[1].getPathItem();
+            m_bouton_item2->setIcon(QIcon (adresse+objet2));
+            nom_objet2 = inventaire[1].getNameItem();
+            m_bouton_item2->setToolTip(nom_objet2);
+            objet3 = inventaire[2].getPathItem();
+            m_bouton_item3->setIcon(QIcon (adresse+objet3));
+            nom_objet3 = inventaire[2].getNameItem();
+            m_bouton_item3->setToolTip(nom_objet3);
+            objet4 = inventaire[3].getPathItem();
+            m_bouton_item4->setIcon(QIcon (adresse+objet4));
+            nom_objet4 = inventaire[3].getNameItem();
+            m_bouton_item4->setToolTip(nom_objet4);
+            objet5 = inventaire[4].getPathItem();
+            m_bouton_item5->setIcon(QIcon (adresse+objet5));
+            nom_objet5 = inventaire[4].getNameItem();
+            m_bouton_item5->setToolTip(nom_objet5);
+            objet6 = inventaire[5].getPathItem();
+            m_bouton_item6->setIcon(QIcon (adresse+objet6));
+            nom_objet6 = inventaire[5].getNameItem();
+            m_bouton_item6->setToolTip(nom_objet6);
+              break;
       }
 
     m_bouton_item1->setVisible(true);
@@ -483,6 +490,7 @@ void MaFenetre::Situ(){
 void MaFenetre::loadChoix(){
        int path;
        path = getNextPath();
+       arriere.push_back(path);
        QString message;
        Situation nouvelle;
        Ennemi ennemi("monstre", 10);
@@ -490,7 +498,7 @@ void MaFenetre::loadChoix(){
        vie = hero.getHealth();
 
         if(vie <= 0 || path == 0){
-            Situation sit = charger_sit(0, adresse);
+            Situation sit = charger_sit(0, adresse, arriere);
             setSituationActuelle(sit);
             message = "Vous êtes mort";
             m_texte->setText(message);
@@ -503,8 +511,12 @@ void MaFenetre::loadChoix(){
 
         }
         else{
-            Situation sit = charger_sit(path, adresse);
+            Situation sit = charger_sit(path, adresse, arriere);
             setSituationActuelle(sit);
+
+            if(situation_actuelle.getIdSituation()== 3){
+                arriere.pop_back();
+            }
 
             if(situation_actuelle.getIdSituation()== 2){ // situation victoire ?
                 message = "Félicitation vous avez trouvé le trésor";
@@ -579,6 +591,20 @@ void MaFenetre::Choix1(){
     m_texte->setVisible(true);
     int path = situation_actuelle.getPathNext1();
     setNextPath(path);
+
+    if(path==arriere.at((arriere.size())-1) && arriere.size()!=1){
+        std::vector<int> vect = arriere;
+        arriere.clear();
+        int n = 0;
+        while (vect.at(n)!=path) {
+            arriere.push_back(vect.at(n));
+            n++;
+        }
+
+
+
+    }
+
     m_bouton_choix1->setVisible(false);
     m_bouton_choix2->setVisible(false);
     m_bouton_choix3->setVisible(false);
@@ -622,6 +648,17 @@ void MaFenetre::Choix2(){
     m_texte->setVisible(true);
     int path = situation_actuelle.getPathNext2();
     setNextPath(path);
+
+    if(path==arriere.at((arriere.size())-2)&& arriere.size()!=1){
+        std::vector<int> vect = arriere;
+        arriere.clear();
+        int n = 0;
+        while (vect.at(n)!=path) {
+            arriere.push_back(vect.at(n));
+            n++;
+        }
+    }
+
     m_bouton_choix1->setVisible(false);
     m_bouton_choix2->setVisible(false);
     m_bouton_choix3->setVisible(false);
@@ -636,6 +673,17 @@ void MaFenetre::Choix3(){
     m_texte->setVisible(true);
     int path = situation_actuelle.getPathNext3();
     setNextPath(path);
+
+    if(path==arriere.at((arriere.size())-2)&& arriere.size()!=1){
+        std::vector<int> vect = arriere;
+        arriere.clear();
+        int n = 0;
+        while (vect.at(n)!=path) {
+            arriere.push_back(vect.at(n));
+            n++;
+        }
+    }
+
     m_bouton_choix1->setVisible(false);
     m_bouton_choix2->setVisible(false);
     m_bouton_choix3->setVisible(false);
@@ -651,6 +699,17 @@ void MaFenetre::Choix4(){
     m_texte->setVisible(true);
     int path = situation_actuelle.getPathNext4();
     setNextPath(path);
+
+    if(path==arriere.at((arriere.size())-2)&& arriere.size()!=1){
+        std::vector<int> vect = arriere;
+        arriere.clear();
+        int n = 0;
+        while (vect.at(n)!=path) {
+            arriere.push_back(vect.at(n));
+            n++;
+        }
+    }
+
     m_bouton_choix1->setVisible(false);
     m_bouton_choix2->setVisible(false);
     m_bouton_choix3->setVisible(false);

@@ -1,10 +1,10 @@
 1;0;/Mort.jpg;Vous etes mort;chemin actuel; ; ; ; ;3;1;0;0;MORT;40;0; ;0;0; 
-0;3;/forest-chemin.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;obscur;lumineux;retour en arriere; ;3;2;0;1; ;0;0; ;0;0; 
-1;4;/OURS.JPG;Choississez le chemin a prendre dans la foret;chemin actuel;gauche;droite;retour en arriere;Tout droit;3;9;2;6;OURS;10;0; ;0;0; 
-0;4;/foret-chemin2.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;gauche;droite;retour en arriere;Tout droit;0;0;2;4; ;0;0; ;0;0; 
-0;2;/foret_ponton.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;Tout Droit;retour en arriere; ; ;5;3;0;0; ;0;0; ;0;0; 
-0;2;/foret_ponton.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;Tout Droit;retour en arriere; ; ;6;4;0;0; ;0;0; ;0;0; 
-0;2;/foret_ponton.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;Tout Droit;retour en arriere; ; ;7;5;0;0; ;0;0; ;0;0; 
-1;4;/loups.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;gauche;droite;retour en arriere;Tout droit;9;8;6;0;loups;10;0; ;0;0; 
-2;0;/victoire.jpg;Felicitation vous avez trouve le tresor;chemin actuel;obscur;lumineux;retour en arriere; ;3;1;0;0; ;0;0; ;0;0; 
-3;2;/objet.jpg;Vous avez trouvé un objet !;chemin actuel;Prendre l'objet;Ne pas prendre l'objet;;;7;1;0;0;;;1;Elixir de vie;0;20;/potion.png
+0;2;/forest-chemin.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;obscur;lumineux;gauche; ;3;2;0;1; ;0;0; ;0;0; 
+1;4;/OURS.JPG;Choississez le chemin a prendre dans la foret;chemin actuel;gauche;droite;ra;Tout droit;3;9;1;6;OURS;10;0; ;0;0; 
+0;4;/foret-chemin2.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;gauche;droite;ar;Tout droit;0;0;2;4; ;0;0; ;0;0; 
+0;2;/foret_ponton.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;Tout Droit;ra; ; ;5;3;0;0; ;0;0; ;0;0; 
+0;2;/foret_ponton.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;Tout Droit;ra; ; ;6;4;0;0; ;0;0; ;0;0; 
+0;2;/foret_ponton.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;Tout Droit;ra; ; ;7;5;0;0; ;0;0; ;0;0; 
+1;4;/loups.jpg;Choississez le chemin a prendre dans la foret;chemin actuel;gauche;droite;ar;Tout droit;4;8;2;0;loups;10;0; ;0;0; 
+2;0;/victoire.jpg;Felicitation vous avez trouve le tresor;chemin actuel;obscur;lumineux;ra; ;3;1;0;0; ;0;0; ;0;0; 
+3;2;/objet.jpg;Vous avez trouvé un objet !;chemin actuel;Prendre l'objet;Ne pas prendre l'objet;;;7;7;0;0;;;1;Elixir de vie;0;20;/potion.png
