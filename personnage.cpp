@@ -61,17 +61,17 @@ QString Personnage::addItem(Item objet){
         }
     }
     if(find == true){
-        message =" Vous possédez déjà cet objet dans votre inventaire";
+        message ="\n Vous possédez déjà cet objet dans votre inventaire";
     }
     else{
 
-        if(inventory.size() == size){
-            message =" Impossible de prendre l'objet, votre inventaire est plein";
+        if(inventory.size() == 6){
+            message ="\n Impossible de prendre l'objet, votre inventaire est plein";
          }
 
-         else{
+         else if(inventory.size() <6){
             inventory << objet;
-             message =" Ajouté à votre inventaire !";
+             message ="\n Ajouté à votre inventaire !";
           }
     }
 
@@ -83,7 +83,7 @@ QString Personnage::utiliserSoin(int id){
     for(int i=0; i<inventory.size(); i++){
       if((inventory[i]).getIdItem() == id){
             setHealth(health +( inventory[i]).getHeal());
-            message = " Utilisation de l'objet "+ (inventory[i]).getNameItem();
+            message = "\n Utilisation de l'objet "+ (inventory[i]).getNameItem();
             inventory.removeAt(i);
       }
     }

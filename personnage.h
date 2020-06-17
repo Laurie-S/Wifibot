@@ -10,7 +10,7 @@ private:
     QString name;
     int health;
     QList<Item> inventory;
-    int size = 5;
+    int size;
 
 public:
     Personnage();

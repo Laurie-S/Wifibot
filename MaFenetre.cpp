@@ -551,6 +551,7 @@ void MaFenetre::Choix1(){
     message = " Vous avez choisit  : ' " + situation_actuelle.getChoix1() + " ' ";
 
     if(situation_actuelle.getIdSituation() == 1){
+        int chance;
          Ennemi ennemi;
          int degat;
          int vie;
@@ -559,14 +560,21 @@ void MaFenetre::Choix1(){
          vie = hero.getHealth();
          vie = vie - degat;
          hero.setHealth(vie);
+         chance = (rand() % (degat - 0 + 1)) + 0;
+         vie = vie - chance;
+         hero.setHealth(vie);
          if(vie<= 0){
              barre_vie->setValue(0);
          }
          else{
             barre_vie->setValue(vie);
          }
+         if(chance==0){
+           message = message + "\n Quelle chance ! Aucune blesssure subie ";
+         }
+         else{
          message = message + "\n Vous avez reçu une blessures ";
-
+        }
     }
 
     if(situation_actuelle.getIdSituation()==3){
@@ -583,17 +591,12 @@ void MaFenetre::Choix1(){
         }
         else{
             message = message + hero.addItem(item);
-            Item baies(2, "baies", 0, 0, "/baies.png");
-            hero.addItem(baies);
-           // Item fleurs(4, "épée", 0, 10, "/fleurs.png");
-           // hero.addItem(fleurs);
-
         }
     }
     message = message + soin();
 
     m_texte->setText(message);
-     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
+     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 100);
     m_texte->setVisible(true);
     int path = situation_actuelle.getPathNext1();
     setNextPath(path);
@@ -645,7 +648,7 @@ void MaFenetre::Choix2(){
            message = message + "\n Quelle chance ! Aucune blesssure subie ";
          }
          else{
-         message = message + "\n Pas de chance ! Vous avez reçu une blessures ";
+         message = message + "\n Ce n'était pas une bonne idée ! Vous avez reçu une blessures ";
         }
     }
      message = message + soin();
