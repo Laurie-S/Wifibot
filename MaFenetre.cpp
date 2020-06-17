@@ -10,9 +10,9 @@
 #include "item.h"
 
 // adresse des fichiers
-//QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
+QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
 //QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";"
-QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
+//QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
 
 std::vector<int> arriere;
 
@@ -31,8 +31,8 @@ MaFenetre::MaFenetre() : QWidget()
      hero.setNamePersonnage("Aventurier");
      Item invent(0, "Inventaire", 0, 0, "/bag.png");
      hero.addItem(invent);
-   //  Item sword(5, "épée", 0, 0, "/epee.png");
-     //hero.addItem(sword);
+     Item sword(5, "épée", 0, 0, "/epee.png");
+     hero.addItem(sword);
 
      arriere.push_back(1);
      arriere.push_back(1);
@@ -308,6 +308,12 @@ QString MaFenetre::soin(){
 
 void MaFenetre::affichageInventaire(){
     QList<Item> inventaire;
+    QString image[4];
+    image[0] = "/potion.png";
+    image[1] = "/baies.png";
+    image[2] = "/fleurs.png";
+    image[3] = "/champignon.png";
+
     QString objet1;
     QString objet2;
     QString objet3;
@@ -334,9 +340,11 @@ void MaFenetre::affichageInventaire(){
         case 2 :
             objet1 = inventaire[0].getPathItem();
             m_bouton_item1->setIcon(QIcon (adresse+objet1));
+            nom_objet1 = inventaire[0].getNameItem();
             m_bouton_item1->setToolTip(nom_objet1);
             objet2 = inventaire[1].getPathItem();
             m_bouton_item2->setIcon(QIcon (adresse+objet2));
+            nom_objet2 = inventaire[1].getNameItem();
             m_bouton_item2->setToolTip(nom_objet2);
           break;
         case 3 :
@@ -348,7 +356,7 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item2->setIcon(QIcon (adresse+objet2));
             nom_objet2 = inventaire[1].getNameItem();
             m_bouton_item2->setToolTip(nom_objet2);
-            objet3 = inventaire[2].getPathItem();
+            objet3 = image[inventaire[2].getIdItem()-1];
             m_bouton_item3->setIcon(QIcon (adresse+objet3));
             nom_objet3 = inventaire[2].getNameItem();
             m_bouton_item3->setToolTip(nom_objet3);
@@ -362,11 +370,11 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item2->setIcon(QIcon (adresse+objet2));
             nom_objet2 = inventaire[1].getNameItem();
             m_bouton_item2->setToolTip(nom_objet2);
-            objet3 = inventaire[2].getPathItem();
+            objet3 =image[inventaire[2].getIdItem()-1];
             m_bouton_item3->setIcon(QIcon (adresse+objet3));
-            nom_objet2 = inventaire[2].getNameItem();
+            nom_objet3 = inventaire[2].getNameItem();
             m_bouton_item3->setToolTip(nom_objet3);
-            objet4 = inventaire[3].getPathItem();
+            objet4 = image[inventaire[3].getIdItem()-1];
             m_bouton_item4->setIcon(QIcon (adresse+objet4));
             nom_objet4 = inventaire[3].getNameItem();
             m_bouton_item4->setToolTip(nom_objet4);
@@ -380,45 +388,44 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item2->setIcon(QIcon (adresse+objet2));
             nom_objet2 = inventaire[1].getNameItem();
             m_bouton_item2->setToolTip(nom_objet2);
-            objet3 = inventaire[2].getPathItem();
+            objet3 = image[inventaire[2].getIdItem()-1];
             m_bouton_item3->setIcon(QIcon (adresse+objet3));
             nom_objet3 = inventaire[2].getNameItem();
             m_bouton_item3->setToolTip(nom_objet3);
-            objet4 = inventaire[3].getPathItem();
+            objet4 = image[inventaire[3].getIdItem()-1];
             m_bouton_item4->setIcon(QIcon (adresse+objet4));
             nom_objet4 = inventaire[3].getNameItem();
             m_bouton_item4->setToolTip(nom_objet4);
-            objet5 = inventaire[4].getPathItem();
+            objet5 = image[inventaire[4].getIdItem()-1];
             m_bouton_item5->setIcon(QIcon (adresse+objet5));
             nom_objet5 = inventaire[4].getNameItem();
             m_bouton_item5->setToolTip(nom_objet5);
-        break;
-        case 6 :
-            objet1 = inventaire[0].getPathItem();
-            m_bouton_item1->setIcon(QIcon (adresse+objet1));
-            nom_objet1 = inventaire[0].getNameItem();
-            m_bouton_item1->setToolTip(nom_objet1);
-            objet2 = inventaire[1].getPathItem();
-            m_bouton_item2->setIcon(QIcon (adresse+objet2));
-            nom_objet2 = inventaire[1].getNameItem();
-            m_bouton_item2->setToolTip(nom_objet2);
-            objet3 = inventaire[2].getPathItem();
-            m_bouton_item3->setIcon(QIcon (adresse+objet3));
-            nom_objet3 = inventaire[2].getNameItem();
-            m_bouton_item3->setToolTip(nom_objet3);
-            objet4 = inventaire[3].getPathItem();
-            m_bouton_item4->setIcon(QIcon (adresse+objet4));
-            nom_objet4 = inventaire[3].getNameItem();
-            m_bouton_item4->setToolTip(nom_objet4);
-            objet5 = inventaire[4].getPathItem();
-            m_bouton_item5->setIcon(QIcon (adresse+objet5));
-            nom_objet5 = inventaire[4].getNameItem();
-            m_bouton_item5->setToolTip(nom_objet5);
-            objet6 = inventaire[5].getPathItem();
-            m_bouton_item6->setIcon(QIcon (adresse+objet6));
-            nom_objet6 = inventaire[5].getNameItem();
-            m_bouton_item6->setToolTip(nom_objet6);
-              break;
+    case 6 :
+        objet1 = inventaire[0].getPathItem();
+        m_bouton_item1->setIcon(QIcon (adresse+objet1));
+        nom_objet1 = inventaire[0].getNameItem();
+        m_bouton_item1->setToolTip(nom_objet1);
+        objet2 = inventaire[1].getPathItem();
+        m_bouton_item2->setIcon(QIcon (adresse+objet2));
+        nom_objet2 = inventaire[1].getNameItem();
+        m_bouton_item2->setToolTip(nom_objet2);
+        objet3 = image[inventaire[2].getIdItem()-1];
+        m_bouton_item3->setIcon(QIcon (adresse+objet3));
+        nom_objet3 = inventaire[2].getNameItem();
+        m_bouton_item3->setToolTip(nom_objet3);
+        objet4 = image[inventaire[3].getIdItem()-1];
+        m_bouton_item4->setIcon(QIcon (adresse+objet4));
+        nom_objet4 = inventaire[3].getNameItem();
+        m_bouton_item4->setToolTip(nom_objet4);
+        objet5 = image[inventaire[4].getIdItem()-1];
+        m_bouton_item5->setIcon(QIcon (adresse+objet5));
+        nom_objet5 = inventaire[4].getNameItem();
+        m_bouton_item5->setToolTip(nom_objet5);
+        objet6 = image[inventaire[5].getIdItem()-1];
+        m_bouton_item6->setIcon(QIcon (adresse+objet6));
+        nom_objet6 = inventaire[5].getNameItem();
+        m_bouton_item6->setToolTip(nom_objet6);
+          break;
       }
 
     m_bouton_item1->setVisible(true);
@@ -576,12 +583,11 @@ void MaFenetre::Choix1(){
         }
         else{
             message = message + hero.addItem(item);
-            Item baies(3, "épée", 0, 20, "/baies.png");
+            Item baies(2, "baies", 0, 0, "/baies.png");
             hero.addItem(baies);
-            Item fleurs(4, "épée", 0, 10, "/fleurs.png");
-            hero.addItem(fleurs);
-            Item sword(5, "épée", 0, 0, "/epee.png");
-            hero.addItem(sword);
+           // Item fleurs(4, "épée", 0, 10, "/fleurs.png");
+           // hero.addItem(fleurs);
+
         }
     }
     message = message + soin();
