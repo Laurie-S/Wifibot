@@ -27,7 +27,7 @@
 1;3;/moufette.jpg;Vous êtes face à une moufette !;chemin actuel;Attaquer avec l'épée;Crier;Fuir;;35;35;15;;Moufette;5;;;;;;;;;;;;;;;;;;;;;;;;;
 1;3;/loups.jpg;Vous êtes face à un loup !;chemin actuel;Attaquer avec l'épée;Lui donner un os;Fuir;;35;35;15;;Loup;15;;;;;;;;;;;;;;;;;;;;;;;;;
 0;4;/foret7.jpg;Quel chemin prenez-vous ?;chemin actuel;Gauche;Droite;Centre-gauche;Centre-droit;15;17;35;36;;;;;;;;;;;;;;;;;;;;;;;;;;;
-1;3;/gollem.jpg;Vous êtes face à un gollem !;chemin actuel;Attaquer avec l'épée;Passer discrètement entre ses jambes;Fuir;;36;36;18;;Gollem;45;;;;;;;;;;;;;;;;;;;;;;;;;
+1;3;/gollem.jpg;Vous êtes face à un gollem !;chemin actuel;Attaquer avec l'épée;Passer entre ses jambes;Fuir;;36;36;18;;Gollem;45;;;;;;;;;;;;;;;;;;;;;;;;;
 1;3;/dieu.jpg;Vous êtes face à un dieu de la forêt !;chemin actuel;Attaquer avec l'épée;Lui proposer un champignon;Fuir;;36;36;20;;Dieu;45;;;;;;;;;;;;;;;;;;;;;;;;;
 1;3;/OURS.JPG;Vous êtes face à un ours !;chemin actuel;Attaquer avec l'épée;Gentil Winnie;Fuir;;37;37;20;;Ours;15;;;;;;;;;;;;;;;;;;;;;;;;;
 1;4;/lynx.jpg;Vous êtes face à un lynx !;chemin actuel;Attaquer avec l'épée;Lui gratter derrière l'oreille;Fuir;Partir très vite;37;37;20;22;Lynx;10;;;;;;;;;;;;;;;;;;;;;;;;;
