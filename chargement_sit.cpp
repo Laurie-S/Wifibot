@@ -22,26 +22,25 @@ Situation charger_sit(int nbr, QString adresse, std::vector<int> arriere){
 
 
          if(i==nbr){ // on est a la situation voulue
-             Item obj(list[15].toInt(),list[16],list[17].toInt(),list[18].toInt(),adresse+list[19]);
+             QString a = QString::fromUtf8("");
+             a += list[16];
+             Item obj(list[15].toInt(),a,list[17].toInt(),list[18].toInt(),adresse+list[19]);
+
              Ennemi ennemi(list[13], list[14].toInt());
-
-             /*if(list[0].toInt()==3){
-                 arriere.pop_back();
-                 qDebug() << "TEST";
-             }*/
-
+            QString b[4];
                  for(int j = 0; j<4; j++){
-                     if(list[10+j].toInt()==arriere.at((arriere.size()-2))){
-                        list[6+j]="retour en arriere";
+                     if(list[9+j].toInt()==arriere.at((arriere.size()-2))){
+                        list[5+j]="retour en arrière";
                      }
-
+                    b[j] = QString::fromUtf8("");
+                    b[j] += list[5+j];
              }
                  qDebug() << arriere.at((arriere.size())-1);
                  qDebug() << arriere.at((arriere.size())-2) << "\n";
 
 
 
-             Situation sit(list[0].toInt(),list[1].toInt(),adresse+list[2],list[3],list[4],list[5],list[6],list[7],list[8],list[9].toInt(),list[10].toInt(),list[11].toInt(),list[12].toInt(), ennemi, obj);
+             Situation sit(list[0].toInt(),list[1].toInt(),adresse+list[2],list[3],list[4],b[0],b[1],b[2],b[3],list[9].toInt(),list[10].toInt(),list[11].toInt(),list[12].toInt(), ennemi, obj);
              return sit;
          }
          i++;

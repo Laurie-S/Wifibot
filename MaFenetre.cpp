@@ -288,7 +288,7 @@ QString MaFenetre::soin(){
             id4 = true;
         }
     }
-    QString message = "";
+    QString message = QString::fromUtf8("");
 
     if(hero.getHealth()<=50 && hero.getHealth()>0 && id1 == true){
         message = message + hero.utiliserSoin(1);
@@ -516,7 +516,7 @@ void MaFenetre::loadChoix(){
         if(vie <= 0 || path == 0){
             Situation sit = charger_sit(0, adresse, arriere);
             setSituationActuelle(sit);
-            message = "Vous êtes mort";
+            message = QString::fromUtf8("Vous êtes mort");
             Texte(message);
             Image->setPixmap(QPixmap(adresse+"/Mort.jpg"));
             m_bouton_quitter->setVisible(true);
@@ -533,7 +533,7 @@ void MaFenetre::loadChoix(){
             }
 
             if(situation_actuelle.getIdSituation()== 2){ // situation victoire ?
-                message = "Félicitation vous avez trouvé le trésor";
+                message = QString::fromUtf8("Félicitation vous avez trouvé le trésor");
                 Texte(message);
                 Image->setPixmap(QPixmap(adresse+"/victoire.jpg"));
                 m_bouton_quitter->setVisible(true);
@@ -551,7 +551,8 @@ void MaFenetre::loadChoix(){
 
 void MaFenetre::Choix1(){
     QString message;
-    message = " Vous avez choisit  : ' " + situation_actuelle.getChoix1() + " ' ";
+    message = QString::fromUtf8(" Vous avez choisit  : ' ");
+    message+= situation_actuelle.getChoix1() + " ' ";
 
     if(situation_actuelle.getIdSituation() == 1){
         int chance;
@@ -769,7 +770,7 @@ void MaFenetre::charger(){
                 inventory.push_back(Obj);
             }
             if(list[i].toInt()==5){
-                Item Obj(5,"Epee",0,0,"/epee.png");
+                Item Obj(5,"Epée",0,0,"/epee.png");
                 inventory.push_back(Obj);
             }
         }
