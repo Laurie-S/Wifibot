@@ -7,12 +7,13 @@
 #include <QLineEdit>
 #include <QPicture>
 #include <vector>
+#include <QDebug>
 #include "item.h"
 
 // adresse des fichiers
-QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
+//QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
 //QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";"
-//QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
+QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
 
 std::vector<int> arriere;
 
@@ -45,12 +46,22 @@ MaFenetre::MaFenetre() : QWidget()
 
 
     m_texte = new QLabel(this); // Création de l"objet
-    m_texte->setText("MENU PRINCIPAL"); // Définition du texte
-    m_texte->setStyleSheet("QLabel { font : Arial ; background-color : none; color : white; font: 18pt;  }");
-    m_texte->setGeometry(900/2-(taille_texte("MENU PRINCIPAL")/2),600/3-50,taille_texte("MENU PRINCIPAL") , 30);
+    m_texte->setStyleSheet("QLabel { font : Arial ; background-color : none; color : white; font: 24pt;  }");
     m_texte->setVisible(false);
 
+    m_texte2 = new QLabel(this); // Création de l"objet
+    m_texte2->setStyleSheet("QLabel { font : Arial ; background-color : none; color : white; font: 24pt;  }");
+    m_texte2->setVisible(false);
 
+    m_texte3 = new QLabel(this); // Création de l"objet
+    m_texte3->setStyleSheet("QLabel { font : Arial ; background-color : none; color : white; font: 24pt;  }");
+    m_texte3->setVisible(false);
+
+    m_texte4 = new QLabel(this); // Création de l"objet
+    m_texte4->setStyleSheet("QLabel { font : Arial ; background-color : none; color : white; font: 24pt;  }");
+    m_texte4->setVisible(false);
+
+    Texte(" MENU PRINCIPAL");
 
     // Construction des boutons
     m_bouton_newGame = new QPushButton("Nouvelle partie", this);
@@ -174,7 +185,7 @@ MaFenetre::MaFenetre() : QWidget()
 
 void MaFenetre::Menu(){
 
-    m_texte->setText("MENU PRINCIPAL"); // Définition du texte
+    Texte("MENU PRINCIPAL"); // Définition du texte
     m_texte->setGeometry(900/2-(taille_texte("MENU PRINCIPAL")/2),600/3-50,taille_texte("MENU PRINCIPAL") , 30);
 
 
@@ -195,9 +206,6 @@ void MaFenetre::Menu(){
 
 }
 
-void MaFenetre::charger(){
-
-}
 
 void MaFenetre::Nouvelle_partie(){
     m_bouton_newGame->setVisible(false);
@@ -205,8 +213,8 @@ void MaFenetre::Nouvelle_partie(){
     m_bouton_quitter->setVisible(false);
     m_bouton_Retour_Menu->setVisible(true);
 
-    m_texte->setText("NOUVELLE PARTIE");
-    m_texte->setGeometry(longueur/2-(taille_texte("NOUVELLE PARTIE")/2),largeur/3-50, taille_texte("NOUVELLE PARTIE") , 30);
+
+    Texte("NOUVELLE PARTIE");
 
    Image->setPixmap(QPixmap(adresse+"/feat-1800x0-c-center.jpg"));
 
@@ -400,6 +408,7 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item5->setIcon(QIcon (adresse+objet5));
             nom_objet5 = inventaire[4].getNameItem();
             m_bouton_item5->setToolTip(nom_objet5);
+        break;
     case 6 :
         objet1 = inventaire[0].getPathItem();
         m_bouton_item1->setIcon(QIcon (adresse+objet1));
@@ -456,9 +465,9 @@ void MaFenetre::Situ(){
     m_bouton_choix2->setGeometry(longueur/2, largeur-2*bouton_larg, bouton_long, bouton_larg);
     m_bouton_choix3->setGeometry(longueur/2-bouton_long, largeur-bouton_larg, bouton_long, bouton_larg);
     m_bouton_choix4->setGeometry(longueur/2, largeur-bouton_larg, bouton_long, bouton_larg);
-    m_texte->setText(message);
-    m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
-    m_texte->setVisible(true);
+
+    Texte(message);
+
     m_bouton_newGame->setVisible(false);
     m_bouton_saved->setVisible(false);
     m_bouton_quitter->setVisible(false);
@@ -508,9 +517,7 @@ void MaFenetre::loadChoix(){
             Situation sit = charger_sit(0, adresse, arriere);
             setSituationActuelle(sit);
             message = "Vous êtes mort";
-            m_texte->setText(message);
-            m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
-            m_texte->setVisible(true);
+            Texte(message);
             Image->setPixmap(QPixmap(adresse+"/Mort.jpg"));
             m_bouton_quitter->setVisible(true);
             m_bouton_continuer->setVisible(false);
@@ -527,18 +534,14 @@ void MaFenetre::loadChoix(){
 
             if(situation_actuelle.getIdSituation()== 2){ // situation victoire ?
                 message = "Félicitation vous avez trouvé le trésor";
-                m_texte->setText(message);
-                m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
-                m_texte->setVisible(true);
+                Texte(message);
                 Image->setPixmap(QPixmap(adresse+"/victoire.jpg"));
                 m_bouton_quitter->setVisible(true);
                 m_bouton_continuer->setVisible(false);
                 barre_vie->setVisible(false);
             }
             else{
-              m_texte->setText(message);
-              m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
-              m_texte->setVisible(true);
+              Texte(message);
               Situ();
             }
 
@@ -595,9 +598,7 @@ void MaFenetre::Choix1(){
     }
     message = message + soin();
 
-    m_texte->setText(message);
-     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 100);
-    m_texte->setVisible(true);
+    Texte(message);
     int path = situation_actuelle.getPathNext1();
     setNextPath(path);
 
@@ -652,9 +653,7 @@ void MaFenetre::Choix2(){
         }
     }
      message = message + soin();
-    m_texte->setText(message);
-     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 60);
-    m_texte->setVisible(true);
+    Texte(message);
     int path = situation_actuelle.getPathNext2();
     setNextPath(path);
 
@@ -677,9 +676,7 @@ void MaFenetre::Choix2(){
 void MaFenetre::Choix3(){
     QString message;
     message = " Vous avez choisit  : ' " + situation_actuelle.getChoix3() + " ' ";
-    m_texte->setText(message);
-     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
-    m_texte->setVisible(true);
+    Texte(message);
     int path = situation_actuelle.getPathNext3();
     setNextPath(path);
 
@@ -703,9 +700,7 @@ void MaFenetre::Choix3(){
 void MaFenetre::Choix4(){
     QString message;
     message = " Vous avez choisit  : ' " + situation_actuelle.getChoix4() + " ' ";
-    m_texte->setText(message);
-     m_texte->setGeometry(900/2-(taille_texte(message)/2),600/3-50,taille_texte(message) , 30);
-    m_texte->setVisible(true);
+    Texte(message);
     int path = situation_actuelle.getPathNext4();
     setNextPath(path);
 
@@ -726,15 +721,153 @@ void MaFenetre::Choix4(){
     m_bouton_continuer->setVisible(true);
 }
 
-void MaFenetre::SauvegarderEtQuitter(){
-
-}
-
 int MaFenetre::taille_texte(QString txt){
     //pour placer le texte au bon endroit
-    QFont myFont("Arial", 18);;
+    QFont myFont("Arial", 24);
     QFontMetrics fm(myFont);
     int width=fm.horizontalAdvance(txt);
     return width;
 }
+
+void MaFenetre::charger(){
+    QFile file(adresse+"/Save.csv");
+
+
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        throw std::logic_error("Impossible de lire le fichier");
+    }
+
+    QTextStream stream(&file);
+
+    while (!stream.atEnd())
+    {
+        QString line = stream.readLine();
+        QStringList list = line.split(";");
+
+        hero.setHealth(list[0].toInt());
+        int nbr = list[1].toInt()+2;
+        QList<Item> inventory;
+        for (int i = 2;i<nbr;i++) {
+            if(list[i].toInt()==0){
+                Item Obj(0,"Inventaire",0,0,"/bag.png");
+                inventory.push_back(Obj);
+            }
+            if(list[i].toInt()==1){
+                Item Obj(1,"Elixir de soin",0,50,"/potion.png");
+                inventory.push_back(Obj);
+            }
+            if(list[i].toInt()==2){
+                Item Obj(2,"Baies Soin",0,20,"/baies.png");
+                inventory.push_back(Obj);
+            }
+            if(list[i].toInt()==3){
+                Item Obj(3,"Fleurs Soin",0,10,"/fleurs.png");
+                inventory.push_back(Obj);
+            }
+            if(list[i].toInt()==4){
+                Item Obj(4,"champignon soin",0,5,"/champignon.png");
+                inventory.push_back(Obj);
+            }
+            if(list[i].toInt()==5){
+                Item Obj(5,"Epee",0,0,"/epee.png");
+                inventory.push_back(Obj);
+            }
+        }
+
+        hero.setInventory(inventory);
+        setNextPath(list[nbr].toInt());
+
+        int nbr2= nbr +list[nbr+1].toInt();
+        for (int i = nbr;i<=nbr2;i++) {
+            arriere.push_back(list[i].toInt());
+        }
+        qDebug() << "test" << arriere.at(arriere.size()-2);
+    loadChoix();
+    }
+}
+
+void MaFenetre::SauvegarderEtQuitter(){
+    QFile file(adresse+"/Save.csv");
+
+
+    if(!file.open(QIODevice::WriteOnly | QIODevice::ReadOnly | QIODevice::Text)){
+        throw std::logic_error("Impossible de lire le fichier");
+    }
+
+    QTextStream stream(&file);
+
+    QList<Item> inventory = hero.getInventory();
+
+
+    stream << hero.getHealth() << ";" << inventory.size() << ";";
+    for (int i = 0;i<inventory.size();i++) {
+        Item obj = inventory.at(i);
+        stream << obj.getIdItem() << ";";
+    }
+
+    stream << arriere.at(arriere.size()-1) << ";" ;
+    stream << arriere.size() << ";";
+    for (int i = 0;i<arriere.size();i++) {
+        stream << arriere.at(i) << ";";
+    }
+    stream << ";" << ";" << ";";
+    m_bouton_choix1->setVisible(false);
+    m_bouton_choix2->setVisible(false);
+    m_bouton_choix3->setVisible(false);
+    m_bouton_choix4->setVisible(false);
+
+    m_bouton_quitter->setVisible(true);
+}
+
+void MaFenetre::Texte(QString message){
+    QStringList list = message.split("\n");
+
+
+    if(list.size()==1){
+        m_texte->setGeometry(900/2-((taille_texte(list[0])+5)/2),600/3-100,taille_texte(list[0])+5 , 40);
+        m_texte->setText(list[0]);
+        m_texte->setVisible(true);
+        m_texte2->setVisible(false);
+        m_texte3->setVisible(false);
+        m_texte4->setVisible(false);
+    }
+    if(list.size()==2){
+        m_texte->setGeometry(900/2-((taille_texte(list[0])+5)/2),600/3-100,taille_texte(list[0])+5 , 40);
+        m_texte2->setGeometry(900/2-((taille_texte(list[1])+5)/2),600/3-50,taille_texte(list[1])+5 , 40);
+        m_texte->setText(list[0]);
+        m_texte2->setText(list[1]);
+        m_texte->setVisible(true);
+        m_texte2->setVisible(true);
+        m_texte3->setVisible(false);
+        m_texte4->setVisible(false);
+    }
+    if(list.size()==3){
+        m_texte->setGeometry(900/2-((taille_texte(list[0])+5)/2),600/3-100,taille_texte(list[0])+5 , 40);
+        m_texte2->setGeometry(900/2-((taille_texte(list[1])+5)/2),600/3-50,taille_texte(list[1])+5 , 40);
+        m_texte3->setGeometry(900/2-((taille_texte(list[2])+5)/2),600/3,taille_texte(list[2]+5) , 40);
+        m_texte->setText(list[0]);
+        m_texte2->setText(list[1]);
+        m_texte3->setText(list[2]);
+        m_texte->setVisible(true);
+        m_texte2->setVisible(true);
+        m_texte3->setVisible(true);
+        m_texte4->setVisible(false);
+    }
+    if(list.size()==4){
+        m_texte->setGeometry(900/2-((taille_texte(list[0])+5)/2),600/3-100,taille_texte(list[0])+5 , 40);
+        m_texte2->setGeometry(900/2-((taille_texte(list[1])+5)/2),600/3-50,taille_texte(list[1])+5 , 40);
+        m_texte3->setGeometry(900/2-((taille_texte(list[2])+5)/2),600/3,taille_texte(list[2]+5) , 40);
+        m_texte4->setGeometry(900/2-((taille_texte(list[3])+5)/2),600/3+50,taille_texte(list[3])+5 , 40);
+        m_texte->setText(list[0]);
+        m_texte2->setText(list[1]);
+        m_texte3->setText(list[2]);
+        m_texte4->setText(list[3]);
+        m_texte->setVisible(true);
+        m_texte2->setVisible(true);
+        m_texte3->setVisible(true);
+        m_texte4->setVisible(true);
+    }
+
+}
+
 

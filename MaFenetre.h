@@ -46,6 +46,7 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     Personnage getPersonnage();
     void affichageInventaire();
     QString soin();
+    void Texte(QString message);
 
 
 
@@ -87,6 +88,9 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     int bouton_long;
     QLabel *Image;
     QLabel *m_texte;
+    QLabel *m_texte2;
+    QLabel *m_texte3;
+    QLabel *m_texte4;
     QLineEdit *m_pseudo;
     Situation situation_actuelle;
     int next_path;

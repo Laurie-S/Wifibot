@@ -47,3 +47,5 @@ Situation charger_sit(int nbr, QString adresse, std::vector<int> arriere){
          i++;
     }
 }
+
+

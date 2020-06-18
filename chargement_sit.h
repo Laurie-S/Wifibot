@@ -20,6 +20,9 @@
 
 Situation charger_sit(int nbr, QString adresse, std::vector<int> arriere);
 
+bool sauvegarder(QString adresse);
+
+bool charger_partie(QString adresse);
 
 
 #endif // CHARGEMENT_SIT_H
