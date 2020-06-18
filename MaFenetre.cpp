@@ -11,9 +11,9 @@
 #include "item.h"
 
 // adresse des fichiers
-//QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
+QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
 //QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";"
-QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
+//QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
 
 std::vector<int> arriere;
 
@@ -522,6 +522,12 @@ void MaFenetre::loadChoix(){
             m_bouton_quitter->setVisible(true);
             m_bouton_continuer->setVisible(false);
             barre_vie->setVisible(false);
+            m_bouton_item1->setVisible(false);
+            m_bouton_item2->setVisible(false);
+            m_bouton_item3->setVisible(false);
+            m_bouton_item4->setVisible(false);
+            m_bouton_item5->setVisible(false);
+            m_bouton_item6->setVisible(false);
 
         }
         else{
@@ -539,6 +545,12 @@ void MaFenetre::loadChoix(){
                 m_bouton_quitter->setVisible(true);
                 m_bouton_continuer->setVisible(false);
                 barre_vie->setVisible(false);
+                m_bouton_item1->setVisible(false);
+                m_bouton_item2->setVisible(false);
+                m_bouton_item3->setVisible(false);
+                m_bouton_item4->setVisible(false);
+                m_bouton_item5->setVisible(false);
+                m_bouton_item6->setVisible(false);
             }
             else{
               Texte(message);
