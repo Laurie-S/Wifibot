@@ -639,15 +639,16 @@ void MaFenetre::Choix1(){
 void MaFenetre::Choix2(){
     QString message;
     message = " Vous avez choisit  : ' " + situation_actuelle.getChoix2() + " ' ";
+    Ennemi ennemi;
+    int degat;
+    ennemi = situation_actuelle.getEnnemi();
+    degat = ennemi.getAttack();
+    if(situation_actuelle.getIdSituation() == 1 && degat != 100 ){
 
-    if(situation_actuelle.getIdSituation() == 1){
-         Ennemi ennemi;
-         int degat;
          int vie;
          int chance;
          qsrand(time(NULL));
-         ennemi = situation_actuelle.getEnnemi();
-         degat = ennemi.getAttack();
+
          vie = hero.getHealth();
          chance = (rand() % (2*degat - 0 + 1)) + 0;
          vie = vie - chance;
