@@ -16,6 +16,7 @@ QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/P
 //QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
 
 std::vector<int> arriere;
+int a = 0
 
 MaFenetre::MaFenetre() : QWidget()
 {
@@ -259,6 +260,7 @@ Personnage MaFenetre::getPersonnage(){
 
 void MaFenetre::setSituationActuelle(Situation situation){
     situation_actuelle = situation;
+    a=0;
 }
 
 void MaFenetre::setNextPath(int path){
@@ -566,7 +568,8 @@ void MaFenetre::Choix1(){
     message = QString::fromUtf8(" Vous avez choisit  : ' ");
     message+= situation_actuelle.getChoix1() + " ' ";
 
-    if(situation_actuelle.getIdSituation() == 1){
+    if(situation_actuelle.getIdSituation() == 1 && a == 0){
+        a++;
         int chance;
          Ennemi ennemi;
          int degat;
@@ -642,7 +645,7 @@ void MaFenetre::Choix2(){
     int degat;
     ennemi = situation_actuelle.getEnnemi();
     degat = ennemi.getAttack();
-    if(situation_actuelle.getIdSituation() == 1 && degat != 100 ){
+    if(situation_actuelle.getIdSituation() == 1 && degat != 100 && a==0){
 
          int vie;
          int chance;
