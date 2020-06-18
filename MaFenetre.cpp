@@ -571,11 +571,10 @@ void MaFenetre::Choix1(){
          Ennemi ennemi;
          int degat;
          int vie;
+         qsrand(time(NULL));
          ennemi = situation_actuelle.getEnnemi();
          degat = ennemi.getAttack();
          vie = hero.getHealth();
-         vie = vie - degat;
-         hero.setHealth(vie);
          chance = (rand() % (degat - 0 + 1)) + 0;
          vie = vie - chance;
          hero.setHealth(vie);
@@ -650,7 +649,7 @@ void MaFenetre::Choix2(){
          qsrand(time(NULL));
 
          vie = hero.getHealth();
-         chance = (rand() % (2*degat - 0 + 1)) + 0;
+         chance = (rand() % ((2*degat) - 0 + 1)) + 0;
          vie = vie - chance;
          hero.setHealth(vie);
          if(vie<= 0){
