@@ -888,7 +888,7 @@ void MaFenetre::Texte(QString message){
 void MaFenetre::MessageMort(){
     QString message;
     if(arriere.at(arriere.size()-2)==8){
-        message = QString::fromUtf8("Vous êtes restez coincé dans la caverne \nAprès plusieurs jours vous êtes mort");
+        message = QString::fromUtf8("Vous êtes resté coincé dans la caverne \nAprès plusieurs jours vous êtes mort");
     }
     else if(arriere.at(arriere.size()-2)==14){
         message = QString::fromUtf8("Vous avez glissé sur une pierre \nVous êtes mort");
