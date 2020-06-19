@@ -47,6 +47,7 @@ class MaFenetre : public QWidget // On hérite de QWidget (IMPORTANT)
     void affichageInventaire();
     QString soin();
     void Texte(QString message);
+    void MessageMort();
 
 
 

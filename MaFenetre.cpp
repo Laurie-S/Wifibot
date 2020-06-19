@@ -11,12 +11,12 @@
 #include "item.h"
 
 // adresse des fichiers
-QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
+//QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
 //QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";"
-//QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
+QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
 
 std::vector<int> arriere;
-int a = 0
+int a = 0;
 
 MaFenetre::MaFenetre() : QWidget()
 {
@@ -518,8 +518,7 @@ void MaFenetre::loadChoix(){
         if(vie <= 0 || path == 0){
             Situation sit = charger_sit(0, adresse, arriere);
             setSituationActuelle(sit);
-            message = QString::fromUtf8("Vous êtes mort");
-            Texte(message);
+            MessageMort();
             Image->setPixmap(QPixmap(adresse+"/Mort.jpg"));
             m_bouton_quitter->setVisible(true);
             m_bouton_continuer->setVisible(false);
@@ -884,6 +883,59 @@ void MaFenetre::Texte(QString message){
         m_texte4->setVisible(true);
     }
 
+}
+
+void MaFenetre::MessageMort(){
+    QString message;
+    if(arriere.at(arriere.size()-2)==8){
+        message = QString::fromUtf8("Vous êtes restez coincé dans la caverne \nAprès plusieurs jours vous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==14){
+        message = QString::fromUtf8("Vous avez glissé sur une pierre \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==19){
+        message = QString::fromUtf8("Vous vous êtes aprochés trop près de créatures dangereuses. \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==25){
+        message = QString::fromUtf8("Vous n'êtes pas funambule, \nvous avez perdu l'équilibre. \nVous êtes morts");
+    }
+    else if(arriere.at(arriere.size()-2)==35){
+        message = QString::fromUtf8("Vous êtes tombé dans le puit \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==37){
+        message = QString::fromUtf8("Il y a eu un éboulement \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==38){
+        message = QString::fromUtf8("Vous avez été brulé vif. \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==44){
+        message = QString::fromUtf8("Les arbres se sont écroullé sur vous. \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==48){
+        message = QString::fromUtf8("C'était un piege. \nVous êtes tombé dans un trou puis vous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==49){
+        message = QString::fromUtf8("Vous n'auriez pas du faire ça. \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==57){
+        message = QString::fromUtf8("Vous ne savez pas nager. \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==63){
+        message = QString::fromUtf8("Elle n'avait pas de bonnes intentions. \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==69){
+        message = QString::fromUtf8("Il vous a fait remonter le temps. \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==71){
+        message = QString::fromUtf8("Vous vous êtes enfoncé dans le sol sans plus pouvoir bouger. \nVous êtes mort");
+    }
+    else if(arriere.at(arriere.size()-2)==76){
+        message = QString::fromUtf8("Vous vous êtes perdu.\n Après avoir errer pendant plusieurs jours, \nvous êtes mort");
+    }
+    else{
+        message = QString::fromUtf8("Vous avez subi trop de blessures. \nVous êtes mort");
+    }
+    Texte(message);
 }
 
 
