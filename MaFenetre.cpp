@@ -649,6 +649,7 @@ void MaFenetre::Choix1(){
         message = message +"\n Objet ramassé :" +item.getNameItem();
         if(degat !=0){
             vie = vie - degat;
+            barre_vie->setValue(vie);
             message = message + "\n c'est empoisonné !";
         }
         else{
