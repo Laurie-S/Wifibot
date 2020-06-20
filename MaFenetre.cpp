@@ -11,9 +11,9 @@
 #include "item.h"
 
 // adresse des fichiers
-//QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
+QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
 //QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";"
-QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
+//QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
 
 std::vector<int> arriere;
 int a = 0;
@@ -33,7 +33,7 @@ MaFenetre::MaFenetre() : QWidget()
      hero.setNamePersonnage("Aventurier");
      Item invent(0, "Inventaire", 0, 0, "/bag.png");
      hero.addItem(invent);
-     Item sword(5, "épée", 0, 0, "/epee.png");
+     Item sword(5, "Epée", 0, 0, "/epee.png");
      hero.addItem(sword);
 
      arriere.push_back(1);
@@ -123,17 +123,17 @@ MaFenetre::MaFenetre() : QWidget()
 
     m_bouton_choix2= new QPushButton("", this);
     m_bouton_choix2->setCursor(Qt::PointingHandCursor);
-    QObject::connect(m_bouton_choix2, SIGNAL(clicked()), this, SLOT());
+    QObject::connect(m_bouton_choix2, SIGNAL(clicked()), this, SLOT(Choix2()));
     m_bouton_choix2->setVisible(false);
 
     m_bouton_choix3= new QPushButton("", this);
     m_bouton_choix3->setCursor(Qt::PointingHandCursor);
-    QObject::connect(m_bouton_choix3, SIGNAL(clicked()), this, SLOT());
+    QObject::connect(m_bouton_choix3, SIGNAL(clicked()), this, SLOT(Choix3()));
     m_bouton_choix3->setVisible(false);
 
     m_bouton_choix4= new QPushButton("", this);
     m_bouton_choix4->setCursor(Qt::PointingHandCursor);
-    QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT());
+    QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT(Choix4()));
     m_bouton_choix4->setVisible(false);
 
 //inventaire
@@ -292,26 +292,63 @@ QString MaFenetre::soin(){
     }
     QString message = QString::fromUtf8("");
 
-    if(hero.getHealth()<=50 && hero.getHealth()>0 && id1 == true){
-        message = message + hero.utiliserSoin(1);
-        int vie = hero.getHealth();
-        barre_vie->setValue(vie);
+    if(hero.getHealth()<=50 && hero.getHealth()>0){
+        if(id1 == true){
+         message = message + hero.utiliserSoin(1);
+         int vie = hero.getHealth();
+         barre_vie->setValue(vie);
+        }
+        else if(id2 == true){
+         message = message + hero.utiliserSoin(2);
+         int vie = hero.getHealth();
+         barre_vie->setValue(vie);
+        }
+        else if(id3 == true){
+         message = message + hero.utiliserSoin(3);
+         int vie = hero.getHealth();
+         barre_vie->setValue(vie);
+        }
+       else if(id4 == true){
+         message = message + hero.utiliserSoin(4);
+         int vie = hero.getHealth();
+         barre_vie->setValue(vie);
+        }
     }
-    if(hero.getHealth()<=80 && hero.getHealth()>50 && id2 == true){
-        message = message + hero.utiliserSoin(2);
-        int vie = hero.getHealth();
-        barre_vie->setValue(vie);
+    if(hero.getHealth()<=80 && hero.getHealth()>50){
+        if(id2 == true){
+         message = message + hero.utiliserSoin(2);
+         int vie = hero.getHealth();
+         barre_vie->setValue(vie);
+        }
+       else if(id3 == true){
+         message = message + hero.utiliserSoin(3);
+         int vie = hero.getHealth();
+         barre_vie->setValue(vie);
+        }
+        else if(id4 == true){
+         message = message + hero.utiliserSoin(4);
+         int vie = hero.getHealth();
+         barre_vie->setValue(vie);
+        }
     }
-    if(hero.getHealth()<=90 && hero.getHealth()>80 && id3 == true){
-        message = message + hero.utiliserSoin(3);
-        int vie = hero.getHealth();
-        barre_vie->setValue(vie);
+    if(hero.getHealth()<=90 && hero.getHealth()>80){
+        if(id3 == true){
+         message = message + hero.utiliserSoin(3);
+         int vie = hero.getHealth();
+         barre_vie->setValue(vie);
+        }
+       else if(id4 == true){
+         message = message + hero.utiliserSoin(4);
+         int vie = hero.getHealth();
+         barre_vie->setValue(vie);
+        }
     }
-    if(hero.getHealth()<=95 && hero.getHealth()>90 && id4 == true){
+    if(hero.getHealth()<=95 && hero.getHealth()>90){
         message = message + hero.utiliserSoin(4);
         int vie = hero.getHealth();
         barre_vie->setValue(vie);
     }
+    affichageInventaire();
     return message;
 }
 
@@ -356,6 +393,10 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item2->setIcon(QIcon (adresse+objet2));
             nom_objet2 = inventaire[1].getNameItem();
             m_bouton_item2->setToolTip(nom_objet2);
+            m_bouton_item3->setIcon(QIcon (adresse+"/croix.png"));
+            m_bouton_item4->setIcon(QIcon (adresse+"/croix.png"));
+            m_bouton_item5->setIcon(QIcon (adresse+"/croix.png"));
+            m_bouton_item6->setIcon(QIcon (adresse+"/croix.png"));
           break;
         case 3 :
             objet1 = inventaire[0].getPathItem();
@@ -370,6 +411,9 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item3->setIcon(QIcon (adresse+objet3));
             nom_objet3 = inventaire[2].getNameItem();
             m_bouton_item3->setToolTip(nom_objet3);
+            m_bouton_item4->setIcon(QIcon (adresse+"/croix.png"));
+            m_bouton_item5->setIcon(QIcon (adresse+"/croix.png"));
+            m_bouton_item6->setIcon(QIcon (adresse+"/croix.png"));
           break;
         case 4 :
             objet1 = inventaire[0].getPathItem();
@@ -388,6 +432,8 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item4->setIcon(QIcon (adresse+objet4));
             nom_objet4 = inventaire[3].getNameItem();
             m_bouton_item4->setToolTip(nom_objet4);
+            m_bouton_item5->setIcon(QIcon (adresse+"/croix.png"));
+            m_bouton_item6->setIcon(QIcon (adresse+"/croix.png"));
           break;
         case 5 :
             objet1 = inventaire[0].getPathItem();
@@ -410,6 +456,7 @@ void MaFenetre::affichageInventaire(){
             m_bouton_item5->setIcon(QIcon (adresse+objet5));
             nom_objet5 = inventaire[4].getNameItem();
             m_bouton_item5->setToolTip(nom_objet5);
+            m_bouton_item6->setIcon(QIcon (adresse+"/croix.png"));
         break;
     case 6 :
         objet1 = inventaire[0].getPathItem();
@@ -484,14 +531,13 @@ void MaFenetre::Situ(){
 
     m_bouton_choix2->setVisible(true);
     m_bouton_choix2->setText(situation_actuelle.getChoix2());
-    QObject::connect(m_bouton_choix2, SIGNAL(clicked()), this, SLOT(Choix2()));
+
 
     m_bouton_choix3->setVisible(false);
 
     if(nombre_choix == 3 || nombre_choix ==4){
         m_bouton_choix3->setText(situation_actuelle.getChoix3());
         m_bouton_choix3->setVisible(true);
-        QObject::connect(m_bouton_choix3, SIGNAL(clicked()), this, SLOT(Choix3()));
     }
 
     m_bouton_choix4->setVisible(false);
@@ -499,7 +545,6 @@ void MaFenetre::Situ(){
     if(nombre_choix ==4){
         m_bouton_choix4->setText(situation_actuelle.getChoix4());
         m_bouton_choix4->setVisible(true);
-        QObject::connect(m_bouton_choix4, SIGNAL(clicked()), this, SLOT(Choix4()));
     }
 
 }
@@ -648,11 +693,12 @@ void MaFenetre::Choix2(){
 
          int vie;
          int chance;
-         qsrand(time(NULL));
-
+         int critique = 2*degat;
+         srand(time(NULL));
          vie = hero.getHealth();
-         chance = (rand() % ((2*degat) - 0 + 1)) + 0;
+         chance = (rand() % (critique - 0 + 1)) + 0;
          vie = vie - chance;
+       //  qDebug() << "chance " << chance << " critique"<< critique << "vie" << vie;
          hero.setHealth(vie);
          if(vie<= 0){
              barre_vie->setValue(0);
@@ -937,5 +983,3 @@ void MaFenetre::MessageMort(){
     }
     Texte(message);
 }
-
-

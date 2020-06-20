@@ -80,12 +80,16 @@ QString Personnage::addItem(Item objet){
 
 QString Personnage::utiliserSoin(int id){
     QString message;
+    int indice = -1;
     for(int i=0; i<inventory.size(); i++){
       if((inventory[i]).getIdItem() == id){
             setHealth(health +( inventory[i]).getHeal());
             message = "\n Utilisation de l'objet "+ (inventory[i]).getNameItem();
-            inventory.removeAt(i);
+            indice = i;
       }
+    }
+    if(indice != -1){
+        inventory.removeAt(indice);
     }
     return message;
 }
