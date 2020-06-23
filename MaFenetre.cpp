@@ -874,6 +874,7 @@ void MaFenetre::SauvegarderEtQuitter(){
     m_bouton_choix3->setVisible(false);
     m_bouton_choix4->setVisible(false);
 
+    Texte("Sauvegarde réussie\nVous pouvez quitter");
     m_bouton_quitter->setVisible(true);
 }
 
