@@ -29,11 +29,16 @@ Situation charger_sit(int nbr, QString adresse, std::vector<int> arriere){
              Ennemi ennemi(list[13], list[14].toInt());
             QString b[4];
                  for(int j = 0; j<4; j++){
-                     if(list[9+j].toInt()==arriere.at((arriere.size()-2))){
-                        list[5+j]="retour en arrière";
+                     if(list[9+j].toInt()==arriere.at((arriere.size()-2)) && list[0]!="3"){
+                          if(list[0]=="1" && (list[9].toInt()==arriere.at((arriere.size()-2)) || list[10].toInt()==arriere.at((arriere.size()-2)))){
+                                ;
+                          }
+                          else{
+                              list[5+j]="retour en arrière";
+                          }
                      }
-                    b[j] = QString::fromUtf8("");
-                    b[j] += list[5+j];
+                     b[j] = QString::fromUtf8("");
+                     b[j] += list[5+j];
              }
                  qDebug() << arriere.at((arriere.size())-1);
                  qDebug() << arriere.at((arriere.size())-2) << "\n";

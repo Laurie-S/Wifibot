@@ -11,9 +11,8 @@
 #include "item.h"
 
 // adresse des fichiers
-QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
-//QString adresse = "D:/Documents/_COURS_/3A/Corona/Projet/wifibot";"
-//QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
+//QString adresse = "C:/Users/Utilisateur/Documents/Dossier perso Celine/Cours3A/Projet Jeu Choix/test";
+QString adresse = "C:/Users/Laurie/Downloads/Wifibot-master/Wifibot-master";
 
 std::vector<int> arriere;
 int a = 0;
@@ -670,9 +669,6 @@ void MaFenetre::Choix1(){
             arriere.push_back(vect.at(n));
             n++;
         }
-
-
-
     }
 
     m_bouton_choix1->setVisible(false);
